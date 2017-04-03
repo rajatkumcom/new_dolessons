@@ -1,0 +1,7 @@
+name = teacher application
+description =  fetch and set name , email and phone in readonly mode in teacher's application form
+package = custom
+core = 7.x
+version=7.x
+
+; Information added by Deepesh Arora script on 20-10-2016

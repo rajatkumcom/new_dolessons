@@ -1,0 +1,511 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function dashboard_menu() {
+  $items['teacher-dashboard'] = array(
+	    'title' => 'Teacher Dashboard',
+	    'page callback' => 'dashboard_page',
+  		'access arguments' => array('teacher_dashboard'),
+  		'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['student-dashboard'] = array(
+	    'title' => 'Student Dashboard',
+	    'page callback' => 'dashboard_page',
+	    'access arguments' => array('student_dashboard'),
+  		'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['seller-dashboard'] = array(
+	    'title' => 'Seller Dashboard',
+	    'page callback' => 'dashboard_page',
+	    'access arguments' => array('seller_dashboard'),
+  		'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['super-admin-dashboard'] = array(
+  		'title' => 'Super Admin Dashboard',
+  		'page callback' => 'dashboard_page',
+  		'access arguments' => array('super_admin_dashboard'),
+  		'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['admin1-dashboard'] = array(
+  		'title' => 'Admin1 Dashboard',
+  		'page callback' => 'dashboard_page',
+  		'access arguments' => array('admin1_dashboard'),
+  		'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['admin2-dashboard'] = array(
+  		'title' => 'Admin2 Dashboard',
+  		'page callback' => 'dashboard_page',
+  		'access arguments' => array('admin2_dashboard'),
+  		'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['admin3-dashboard'] = array(
+  		'title' => 'Admin3 Dashboard',
+  		'page callback' => 'dashboard_page',
+  		'access arguments' => array('admin3_dashboard'),
+  		'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+function dashboard_permission() {
+	$permission = array(
+					'teacher_dashboard' => array(
+							'title' => t('Teacher Dashboard'),
+					),
+					'student_dashboard' => array(
+							'title' => t('Student Dashboard'),
+					),
+					'seller_dashboard' => array(
+							'title' => t('Seller Dashboard'),
+					),
+					'super_admin_dashboard' => array(
+							'title' => t('Super Admin Dashboard'),
+					),
+					'admin1_dashboard' => array(
+							'title' => t('Admin1 Dashboard'),
+					),
+					'admin2_dashboard' => array(
+							'title' => t('Admin2 Dashboard'),
+					),
+					'admin3_dashboard' => array(
+							'title' => t('Admin3 Dashboard'),
+					),
+				);
+	
+	return $permission;
+}
+
+function dashboard_page(){
+	
+	return '';
+	
+}
+
+function dashboard_form_alter($form, &$form_state, $form_id){
+	global $user;
+    
+	if($form_id == 'teacher_profile_form_multistep_form') {
+		
+	}
+}
+
+/**
+* Implements hook_block_info().
+*/
+function dashboard_block_info() {
+  $blocks = array();
+  $blocks['DASHBOARD_TEACHER_BLOCK'] = array(
+    'info' => t('Teacher Dashboard profile Picture'),
+  );
+  
+  $blocks['DASHBOARD_STUDENT_BLOCK'] = array(
+    'info' => t('Student Dashboard profile Picture'),
+  );
+  
+  $blocks['DASHBOARD_SELLER_BLOCK'] = array(
+    'info' => t('Seller Dashboard profile Picture'),
+  );
+  
+  $blocks['DASHBOARD_SUPER_ADMIN_BLOCK'] = array(
+  		'info' => t('SUPER ADMIN Dashboard'),
+  );
+  
+  $blocks['DASHBOARD_ADMIN1_BLOCK'] = array(
+    'info' => t('Admin 1 Dashboard'),
+  );
+  
+  $blocks['DASHBOARD_ADMIN2_BLOCK'] = array(
+  	'info' => t('Admin 2 Dashboard'),
+  );
+  
+  $blocks['DASHBOARD_ADMIN3_BLOCK'] = array(
+  	'info' => t('Admin 3 Dashboard'),
+  );
+  
+  return $blocks;
+}
+/**
+* Implements hook_block_view().
+*/
+function dashboard_block_view($delta = '') {
+	$block = array ();
+	switch ($delta) {
+		case 'DASHBOARD_TEACHER_BLOCK' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_teacher_profile_info_content ();
+			break;
+		case 'DASHBOARD_STUDENT_BLOCK' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_student_profile_info_content ();
+			break;
+		case 'DASHBOARD_SELLER_BLOCK' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_seller_profile_info_content ();
+			break;
+		case 'DASHBOARD_SUPER_ADMIN_BLOCK' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_super_admin_profile_info_content ();
+			break;
+		case 'DASHBOARD_ADMIN1_BLOCK' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_admin1_profile_info_content ();
+			break;
+		case 'DASHBOARD_ADMIN2_BLOCK' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_admin2_profile_info_content ();
+			break;
+		case 'DASHBOARD_ADMIN3_BLOCK' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_admin3_profile_info_content ();
+			break;
+	}
+	return $block;
+}
+
+function _dashboard_teacher_profile_info_content() {
+  global $user;
+  global $base_url;
+  $uid = $user->uid;
+  $output = '';
+  $profile = profile2_by_uid_load($user->uid, 'teacher_profile');
+  $teacher_first_name = isset($profile->field_teacher_first_name[LANGUAGE_NONE][0]['value']) ? $profile->field_teacher_first_name[LANGUAGE_NONE][0]['value'] : 'empty';
+  $teacher_last_name = isset($profile->field_teacher_last_name[LANGUAGE_NONE][0]['value']) ? $profile->field_teacher_last_name[LANGUAGE_NONE][0]['value'] : 'empty';
+  $profile_substring = substr($profile->type,0,3);
+  $userload = user_load($uid);
+  $img_url = $userload->picture->uri; // the orig image uri
+  //$img_url = isset($profile->field_passport_size_photo['und'][0]['uri']);  // the orig image uri
+  $style = 'thumbnail';  // or any other custom image style you've created via /admin/config/media/image-styles
+  $org_img_url = image_style_url($style, $img_url);
+   
+  $image_options = array(
+	 'path' => $org_img_url, 
+	 'alt' => 'Test alt',
+	 'title' => 'Test title',
+	 'width' => '20%',
+	 'height' => '20%',
+	  //'attributes' => array('class' => 'profile-img', 'id' => 'teacher-img'),
+  );
+  $image = '<div class="img-main-contnr">'.theme('image', $image_options).'</div>';
+  $name_output = '<p>Name : <span>'.$teacher_first_name.''.$teacher_last_name.'</span></p>';
+  $status_output = '<p>'.'Status :<span> Online'.'</span></p>';
+  $profile_id = '<p>Teacher id : <span>'.$profile_substring.''.$uid.'</span></p>';
+  $output .= '<div class="box-profile">'.$image.'';
+  
+  $output .= '<div class="box-profile-content">'.$name_output.''.$status_output.''.$profile_id.'</div>';
+  
+  $output .= '</div>';
+  
+  $manage_availability_url = '/node/add/teacher-availability';
+  $result = db_select('node', 'n')
+			  ->fields('n')
+			  ->condition('uid', $uid,'=')
+			  ->condition('type', 'teacher_availability','=')
+			  ->execute()
+			  ->fetchAssoc();
+  if( $result ) {
+  	$edit = $result['nid'];
+  	$manage_availability_url = "/node/$edit/edit";
+  };
+  
+  $manage_profile_url = '/node/add/teacher-application-form';
+  $result = db_select('node', 'n')
+			  ->fields('n')
+			  ->condition('uid', $uid,'=')
+			  ->condition('type', 'teacher_application_form','=')
+			  ->execute()
+			  ->fetchAssoc();
+  if( $result ) {
+  	$edit = $result['nid'];
+  	$manage_profile_url = "/node/$edit/edit";
+  }
+  
+  $manage_seller_url = '/node/add/seller-s-details';
+  $result = db_select('node', 'n')
+				  ->fields('n')
+				  ->condition('uid', $uid,'=')
+				  ->condition('type', 'seller_s_details','=')
+				  ->execute()
+				  ->fetchAssoc();
+  	if( $result ) {
+	  	$show = $result['nid'];
+	  	$manage_seller_url = "/node/$show";
+	  	
+	  	$arr_url = db_select('field_data_field_seller_details_url', 'sdu')
+					  	->fields('sdu')
+					  	->condition('entity_id', $show,'=')
+					  	->execute()
+					  	->fetchAssoc();
+	  		$mystoreurl = $arr_url['field_seller_details_url_value'];
+  	}
+  	
+  	$store_items = '';
+  if( user_has_role(6) || user_has_role(3) ) { //6 role for seller 3 for administrator
+  	$store_items = '<li class="thirteen"><a href="'. $base_url . '/node/add/store-items">Store Items</a> </li>
+  					<li class="forteen"><a href="'. $base_url . '/store/'. $mystoreurl .'">My Store</a> </li>';
+  }
+  
+  $output .= '<div class="manage-dashboard-profile"><h3>Manage</h3>
+			        <ul>
+    				     <li class="first"><a href="'.$base_url.'/user/'.$user->uid.'/edit">Profile Details</a> </li>
+    					   <li class="second"><a href="'.$base_url.'/user/'.$user->uid.'/edit">Manage Advertisement</a> </li>
+    					   <li class="third"><a href="'.$base_url. $manage_availability_url. '">Manage Availability</a> </li>
+    					   <li class="fourth"><a href="'. $base_url .'/manage-images">Manage Images</a> </li>
+    					   <li class="fifth"><a href="'. $base_url . $manage_profile_url.'">Manage Profile Details</a> </li>
+    					   <li class="sixth"><a href="home">Manage Schedule</a> </li>
+    					   <li class="seventh"><a href="manage-store">Manage Store</a> </li>
+    					   <li class="eight"><a href="'. $base_url .'/manage-videos">Manage Videos</a> </li>
+    					   <li class="ninth"><a href="'. $base_url .'/quiz-test-result">Test Result</a> </li>
+                 <li class="tweleth"><a href="'. $base_url . $manage_seller_url.'">Seller’s Details</a> </li>
+    					   <li class="tweleth"><a href="'. $base_url .'/banking-details">Banking Details</a> </li>
+    					   <li class="tweleth"><a href="'. $base_url .'/assigned-student">Assigned Students</a> </li>
+    					   <li class="thirteen"><a href="'. $base_url .'/trending-jobs">Trending Jobs</a> </li>
+    					   <li class="thirteen"><a href="'. $base_url .'/earnings">Earnings as teacher</a></li>
+    					   <li class="thirteen"><a href="'. $base_url .'/sellers-earnings">Earnings as seller</a></li>
+         				 <li class="thirteen"><a href="'. $base_url .'/dolcard">DolCard</a> </li>
+				      </ul>
+              </div>';
+   
+  
+  //return $image.$name_output.$status_output.$dashboard_links;
+  return $output;
+}
+
+function _dashboard_student_profile_info_content(){
+	
+  global $user;
+  global $base_url;
+  $uid = $user->uid;
+  $output = '';
+  $profile = profile2_by_uid_load($uid, 'student_profile');
+  $userload = user_load($uid);
+  
+  $student_first_name = $profile->field_student_first_name['und'][0]['value'];
+  $student_last_name = $profile->field_student_last_name['und'][0]['value'];
+  $profile_substring = substr($profile->type,0,3);
+  //substr("Hello world",6)
+  //echo'<pre>';
+  //print_r($student_first_name);
+  
+  $img_url = $userload->picture->uri; // the orig image uri
+  //echo'<pre>';
+  //print_r($profile_substring);
+  //die();
+  
+  $style = 'thumbnail';  // or any other custom image style you've created via /admin/config/media/image-styles
+  $org_img_url = image_style_url($style, $img_url);
+   
+  $image_options = array(
+ 'path' => $org_img_url, 
+ 'alt' => 'Test alt',
+ 'title' => 'Test title',
+ 'width' => '20%',
+ 'height' => '20%',
+  //'attributes' => array('class' => 'profile-img', 'id' => 'teacher-img'),
+  );
+  $image = '<div class="img-main-contnr">'.theme('image', $image_options).'</div>';
+  $name_output = '<p>Name : <span>'.$student_first_name.' '.$student_last_name.'</span></p>';
+  $status_output = '<p>'.'Status :<span> Online'.'</span></p>';
+  $profile_id = '<p>Student id : <span>'.$profile_substring.''.$uid.'</span></p>';
+  $output .= '<div class="box-profile">'.$image.'';
+  
+  $output .= '<div class="box-profile-content">'.$name_output.''.$status_output.''.$profile_id.'</div>';
+  
+  $output .= '</div>';
+  
+  
+  $manage_seller_url = '/node/add/seller-s-details';
+  $mystoreurl = '';
+  $result = db_select('node', 'n')
+	  ->fields('n')
+	  ->condition('uid', $uid,'=')
+	  ->condition('type', 'seller_s_details','=')
+	  ->execute()
+	  ->fetchAssoc();
+  if( $result ) {
+  	$show = $result['nid'];
+  	$manage_seller_url = "/node/$show";
+  	
+  	$arr_url = db_select('field_data_field_seller_details_url', 'sdu')
+			  	->fields('sdu')
+			  	->condition('entity_id', $show,'=')
+			  	->execute()
+			  	->fetchAssoc();
+  	$mystoreurl = $arr_url['field_seller_details_url_value'];
+  }
+  
+  $store_items = '';
+  
+  if( user_has_role(6) || user_has_role(3) ) { //6 role for seller 3 for administrator
+  	$store_items = '<li class="twentyfour"><a href="'. $base_url . '/node/add/store-items">Store Items</a> </li>
+  					<li class="twentyfive"><a href="'. $base_url . '/store/'. $mystoreurl .'">My Store</a> </li>';
+  }
+  $output .= '<div class="manage-dashboard-profile"><h3>Manage</h3>
+       <ul>
+    	     <li class="first"><a href="'.$base_url.'/user/'.$user->uid.'/edit">Manage Profile Details</a> </li>
+    		   <li class="second"><a href="home">Manage Schedules</a> </li>
+    		   <li class="third"><a href="manage-store">Manage Store</a> </li>
+    		   <li class="fifth"><a href="'. $base_url .'/test-summary">Test Summary</a> </li>
+      		 <li class="seventh"><a href="'. $base_url .'/quiz-test-result">View Practice Test results</a> </li>
+    		   <!--<li class="forteen"><a href="'. $base_url.'/find-a-teacher">Find a Teacher </a> </li>-->
+    		  <!-- <li class="sixteen"><a href="#">Prepay</a> </li>-->
+    		   <li class="sixteen"><a href="#">View Bookings</a> </li>
+    		   <li class="nineteenth"><a href="#">Manage Details</a> </li>
+    		  <!--  <li class="twentieth"><a href="#">Send Notification</a> </li>-->
+    		   <li class="nineteenth"><a href="#">Guidelines</a> </li>
+    		   <li class="tweleth"><a href="'. $base_url .'/banking-details">Banking Details</a> </li>
+    		   <li class="thirteen"><a href="'. $base_url .'/sellers-earnings">Earnings as seller</a></li>
+      		 <li class="tweleth"><a href="'. $base_url .'/assigned-teacher">Assigned Teachers</a> </li>
+    		   <li class="tweleth"><a href="'. $base_url . $manage_seller_url.'">Seller’s Details</a> </li>
+    		   <li class="tweleth"><a href="'. $base_url . '/book-by-admin-student">Book By Admin</a> </li>
+		   ' . $store_items . '
+		   </ul></div>';
+   return $output;
+  
+}
+
+function _dashboard_seller_profile_info_content(){
+	
+  global $user;
+  global $base_url;
+  $uid = $user->uid;
+  $output = '';
+  $profile = profile2_by_uid_load($uid, 'seller_profile');
+  $userload = user_load($uid);
+  //print theme('user_picture', array('account' =>$user));
+  //echo'<pre>';
+  //print_r($profile);
+  
+  
+  $seller_first_name = $profile->field_seller_first_name['und'][0]['value'];
+  $seller_last_name = $profile->field_seller_last_name['und'][0]['value'];
+  $seller_phone = $profile->field_seller_last_name['und'][0]['value'];
+  $seller_state = $profile->field_seller_address['und'][0]['value'];
+  $seller_biography = $profile->field_seller_biography['und'][0]['value'];
+  $profile_substring = substr($profile->type,0,3);
+  
+
+  $img_url = $userload->picture->uri; // the orig image uri
+  $style = 'thumbnail';  // or any other custom image style you've created via /admin/config/media/image-styles
+  $org_img_url = image_style_url($style, $img_url);
+   
+  $image_options = array(
+ 'path' => $org_img_url, 
+ 'alt' => 'Test alt',
+ 'title' => 'Test title',
+ 'width' => '20%',
+ 'height' => '20%',
+  //'attributes' => array('class' => 'profile-img', 'id' => 'teacher-img'),
+  );
+  $image = '<div class="img-main-contnr">'.theme('image', $image_options).'</div>';
+  $name_output = '<p>Name : <span>'.$seller_first_name.' '.$seller_last_name.'</span></p>';
+  $status_output = '<p>'.'Status :<span> Online'.'</span></p>';
+  $profile_id = '<p>Seller id : <span>'.$profile_substring.''.$uid.'</span></p>';
+  $output .= '<div class="box-profile">'.$image.'';
+  
+  $output .= '<div class="box-profile-content">'.$name_output.''.$status_output.''.$profile_id.'</div>';
+  
+  $output .= '</div>';
+ 
+  $output .= '<div class="manage-dashboard-profile"><h3>Manage</h3>
+  			      <ul>
+  				      <li class="first"><a href="'.$base_url.'/user/'.$user->uid.'/edit">Manage Profile Details</a> </li>
+  				      <li class="second"><a href="manage-store">Manage Store</a> </li>
+  					    <li class="third"><a href="home">Manage Advertisements</a> </li>
+    					  <li class="tweleth"><a href="'. $base_url .'/hire-teacher-listing">Hire Teacher</a> </li>
+    					  <li class="tweleth"><a href="'. $base_url .'/banking-details">Banking Details</a> </li>
+    					  <li class="fifth"><a href="'. $base_url .'/sellers-earnings">Earning Details</a> </li>
+  					  </ul>
+    		      </div>';
+   return $output;
+}
+
+function _dashboard_super_admin_profile_info_content() {
+
+	global $base_url;
+
+	$output = '<div class="manage-dashboard-profile"><h3>Manage</h3>
+			       <ul>
+					   <li class="first"><a href="'. $base_url .'/view-teachers">View Teachers</a> </li>
+					   <li class="second"><a href="'. $base_url .'/view-students">View Students</a> </li>
+					   <li class="third"><a href="'. $base_url .'/users-of-dotest">DoTest</a> </li>
+					   <li class="fourth"><a href="'. $base_url .'/send-notifications">Send Notifications</a> </li>
+					   <li class="fifth"><a href="'. $base_url .'/admin/people/create">Create User</a> </li>
+					   <li class="sixth"><a href="'. $base_url .'/manage-blog">Manage Blog</a> </li>
+					   <li class="seventh"><a href="'. $base_url .'/tickets-listing">Ticket Listing</a> </li>
+			   		   <li class="eight"><a href="'. $base_url .'/earnings-all">Teachers Earnings</a> </li>
+			   		   <li class="ninth"><a href="'. $base_url .'/dolcard-filter">Teachers By Dolcard</a> </li>
+			   		   <li class="ninth"><a href="'. $base_url .'/manage-newsletter">Manage Newsletters</a> </li>
+			   		   <li class="ninth"><a href="'. $base_url .'/manage-newsletter-categories">Manage Newsletter Categories</a> </li>
+			   		   <li class="ninth"><a href="'. $base_url .'/manage-advertisement-admin">Manage Advertisement Profile</a> </li>
+			   		   <li class="ninth"><a href="'. $base_url .'/sponsored-posts-application-list">Manage Sponsored Post</a> </li>
+			   		   <li class="ninth"><a href="'. $base_url .'/uploaded-ads-listing-status">Manage Advert Banner</a> </li>
+			   		   
+				</ul></div>';
+
+	return $output;
+}
+
+function _dashboard_admin1_profile_info_content() {
+	
+	global $base_url;
+	
+	$output = '<div class="manage-dashboard-profile"><h3>Manage</h3>
+			       <ul>
+					   <li class="first"><a href="'. $base_url .'/manage-blog">Manage Blog</a> </li>
+					   <li class="second"><a href="'. $base_url .'/tickets-listing">Ticket Listing</a> </li>
+					   <li class="third"><a href="'. $base_url .'/send-notifications">Send Notifications</a> </li>
+					   <li class="fourth"><a href="'. $base_url .'/forums/general-discussion">Forums</a> </li>
+					   <li class="fifth"><a href="'. $base_url .'/find-a-teacher">Find a Teacher</a> </li>
+					   <li class="sixth"><a href="'. $base_url .'/practice-test-questions">Practice Test</a> </li>
+					   <li class="seventh"><a href="'. $base_url .'/view-teachers">View Teachers</a> </li>
+					   <li class="eight"><a href="'. $base_url .'/view-students">View Students</a> </li>
+					   <li class="ninth"><a href="'. $base_url .'/earnings-all">Teachers Earnings</a> </li>
+				   </ul></div>';
+	
+	return $output;
+}
+
+function _dashboard_admin2_profile_info_content() {
+	
+	global $base_url;
+	
+	$output = '<div class="manage-dashboard-profile"><h3>Manage</h3>
+			       <ul>
+					   <li class="first"><a href="'. $base_url .'/manage-blog">Manage Blog</a> </li>
+					   <li class="second"><a href="'. $base_url .'/tickets-listing">Ticket Listing</a> </li>
+					   <li class="third"><a href="'. $base_url .'/send-notifications">Send Notifications</a> </li>
+					   <li class="fourth"><a href="'. $base_url .'/forums/general-discussion">Forums</a> </li>
+					   <li class="fifth"><a href="'. $base_url .'/find-a-teacher">Find a Teacher</a> </li>
+					   <li class="sixth"><a href="'. $base_url .'/practice-test-questions">Practice Test</a> </li>
+					   <li class="seventh"><a href="'. $base_url .'/view-teachers">View Teachers</a> </li>
+					   <li class="eight"><a href="'. $base_url .'/view-students">View Students</a> </li>
+				   </ul></div>';
+	 
+	return $output;
+}
+
+function _dashboard_admin3_profile_info_content() {
+
+	global $base_url;
+	
+	$output = '<div class="manage-dashboard-profile"><h3>Manage</h3>
+			       <ul>
+					   <li class="first"><a href="'. $base_url .'/manage-blog">Manage Blog</a> </li>
+					   <li class="second"><a href="'. $base_url .'/tickets-listing">Ticket Listing</a> </li>
+					   <li class="third"><a href="'. $base_url .'/send-notifications">Send Notifications</a> </li>
+					   <li class="fourth"><a href="'. $base_url .'/practice-test-questions">Practice Test</a> </li>
+				</ul></div>';
+	 
+	
+	return $output;
+}
+
+

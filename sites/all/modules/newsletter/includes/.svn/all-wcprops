@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes
+END
+newsletter.list.controller.inc
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.list.controller.inc
+END
+newsletter.template.controller.inc
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.template.controller.inc
+END
+newsletter.newsletter.controller.inc
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.newsletter.controller.inc
+END
+newsletter.pages.inc
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.pages.inc
+END
+newsletter.basic.inc
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.basic.inc
+END
+newsletter.mail.inc
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.mail.inc
+END
+newsletter.automated.inc
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.automated.inc
+END
+newsletter.subscriber.controller.inc
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.subscriber.controller.inc
+END
+newsletter.admin.inc
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.admin.inc
+END
+newsletter.custom.inc
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/online-learning/!svn/ver/5/system/branches/development/src/site/sites/all/modules/newsletter/includes/newsletter.custom.inc
+END

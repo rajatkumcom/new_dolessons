@@ -1,0 +1,7 @@
+name = role base redirect
+description =  role based redirection on login
+package = custom
+core = 7.x
+version=7.x
+
+; Information added by Deepesh Arora script on 16-03-2016

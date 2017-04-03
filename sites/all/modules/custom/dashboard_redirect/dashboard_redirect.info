@@ -1,0 +1,4 @@
+name = Dashboard Redirect
+description = Redirect users to their dashboard.
+package = custom
+core = 7.x

@@ -1,0 +1,10 @@
+name = Quiz Dolessons
+description = Quiz checkout related activities
+core = 7.x
+package = Quiz 
+
+dependencies[] = quiz
+dependencies[] = pdf_using_mpdf
+dependencies[] = commerce
+
+scripts[] = quiz_do_lessons.js

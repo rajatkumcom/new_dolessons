@@ -1,0 +1,39 @@
+<?php
+
+/*
+ * Implementation of hook_form_alter()
+ */
+ 
+ function teacher_application_form_alter(&$form, &$form_state, $form_id){
+	 
+	 
+	 if ($form_id == 'teacher_application_form_node_form') {
+		 global $user;
+		 
+		   // Prevent direct modification of FIELD_NAME
+		 
+		 //echo'<pre>';
+		 //print_r($aa);
+		 $profile = profile2_by_uid_load($user->uid, 'teacher_profile');
+		 $first_name = $profile->field_teacher_first_name[LANGUAGE_NONE][0]['value'];
+		 $last_name =  $profile->field_teacher_last_name[LANGUAGE_NONE][0]['value'];
+		 //$phone_number = $profile->field_teacher_mobile_number[LANGUAGE_NONE][0]['value'];
+		 //echo'<pre>';
+		 //print_r($profile);
+  
+      //$form['field_teacher_name']['#access'] = FALSE;
+      $form['field_teacher_name']['#disabled'] = TRUE;
+      $form['field_teacher_name'][LANGUAGE_NONE][0]['value']['#default_value'] = $first_name.''.$last_name;
+      //$form['field_teacher_mobile'][LANGUAGE_NONE][0]['value']['#default_value'] = $phone_number;
+      $form['field_teacher_mobile']['#disabled'] = TRUE;
+      
+      
+    }
+  }
+		 
+		
+		 
+
+		 
+
+ 

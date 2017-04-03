@@ -1,0 +1,436 @@
+<?php
+
+function common_form_alter(&$form, &$form_state, $form_id){
+	global $user;
+	if($form_id == 'teacher_application_form_node_form'){
+		
+		unset($form['body']);
+		unset($form['field_classes_and_subjects_hidde']);
+		unset($form['field_teacher_badge_hidden']);
+		drupal_set_title(t('Teacher Application Form'));
+		$form['actions']['submit']['#value'] = 'Start Teaching';
+		$form['actions']['delete']['#access'] = FALSE;
+                $form['actions']['submit']['#submit'][] = 'common_node_submit';
+                
+	}
+
+   if($form_id == 'service_feedback_information_node_form'){
+	   drupal_set_title(t('Service Feedback Information'));
+	   unset($form['body']);
+	   $form['actions']['submit']['#value'] = 'Submit';
+
+
+   }
+   if($form_id == 'user_login'){
+	   drupal_set_title(t(''));
+	   }
+	   
+   if($form_id == 'gift_cards_node_form'){
+       drupal_set_title(t('Gift Card'));
+       $form['actions']['submit']['#value'] = 'NEXT';
+   }
+   if ($form_id == 'views_form_commerce_cart_form_default') {
+	   $cart = commerce_cart_order_load($user->uid);
+    }
+    
+    if($form_id == 'upload_ad_banner_node_form'){
+       unset($form['body']);
+       $form['actions']['submit']['#value'] = 'NEXT';
+       drupal_set_title(t('Upload Ad Banner'));
+       unset($form['field_add_banner_cost_per_imp'][LANGUAGE_NONE]['#options']['_none']);
+       unset($form['field_add_banner_cost_per_day'][LANGUAGE_NONE]['#options']['_none']);
+       unset($form['field_add_banner_cost_per_week'][LANGUAGE_NONE]['#options']['_none']);
+       
+       
+       
+   }
+   
+   if($form_id == 'advertisement_profile_node_form'){
+	   unset($form['body']);
+       $form['actions']['submit']['#value'] = 'Submit';
+       unset($form['field_add_profile_cost_per_imp'][LANGUAGE_NONE]['#options']['_none']);
+       unset($form['field_add_profile_cost_per_day'][LANGUAGE_NONE]['#options']['_none']);
+       unset($form['field_add_profile_cost_per_week'][LANGUAGE_NONE]['#options']['_none']);
+
+       
+       //global $user;
+	  $uid = $user->uid;
+	  $order_object = commerce_cart_order_load($uid);
+      //display($order_object);
+      //$order_id = $order_object->order_id;
+      //display($order_id);
+      //die;
+      
+      
+      
+       
+   }
+   if($form_id == 'teacher_apply_job_vacancies_node_form'){
+       unset($form['body']);
+       drupal_set_title(t('Teacher Apply Job Vacancies'));
+       $form['actions']['submit']['#value'] = 'Submit';
+   }
+   if($form_id == 'banking_details_node_form'){
+       unset($form['body']);
+       drupal_set_title(t('Add Banking Details'));
+       $form['actions']['submit']['#value'] = 'Submit';
+       drupal_add_js(drupal_get_path('module', 'common') . '/common.js');
+
+   }
+   
+   if($form_id == 'hire_teacher_node_form'){
+	   	$form['field_hire_teacher_i_have_read_']['und']['#title'] = '';
+	   	drupal_set_title(t('Hire Teacher'));
+	   	unset($form['body']);
+	   	//echo'<pre>';
+	   	//print_r($form);
+	   	$form['field_hire_teacher_eng_lang']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_english_lnge']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_biologyval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_biology']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_mathsval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_mathematics']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_chemistryval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_chemistry']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_com_studval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_comp_studies']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_accountval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_accounting']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_fineart']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_fine_art']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_lit_englval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hite_teacher_lit_in_eng']['#suffix'] = '</div>';
+	   	$form['field_hire_teachercrk']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_c_r_k']['#suffix'] = '</div>';
+	   //$form['field_others_specifyval']['#prefix'] = '<div class="sub-teacher">';
+	   //$form['field_hire_teacher_other_specify']['#suffix'] = '</div>';
+        $form['field_hire_teacher_fisheriesval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_fisheries']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_civic_eduval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_civic_edu']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_geographyval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_geography']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_agri_scival']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_agric_science']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_ecoval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_economics']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_socl_studsval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_social_stud']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_basic_scival']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_basic_science']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_techdrawval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_tech_draw']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_gov']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_government']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_musicval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_music']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_hist']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_history']['#suffix'] = '</div>';
+	   	$form['field_fnn']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_fod_nutrition']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_busi_studval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_business_stud']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_basic_techval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_basic_tech']['#suffix'] = '</div>';
+	   	$form['field_hire_teacher_furth_mathval']['#prefix'] = '<div class="sub-teacher">';
+	   	$form['field_hire_teacher_further_math']['#suffix'] = '</div>';
+	   	
+   }
+   
+   if($form_id == 'teachers_corporate_training_node_form'){
+	   	$form['field_tpt_i_have_read_and_agree']['und']['#title'] = '';
+	   	drupal_set_title(t('Teachers Corporate Training'));
+	   	unset($form['body']);
+   }
+   
+   if($form_id == 'teacher_availability_node_form'){
+   		unset($form['body']);
+   }
+   
+
+   if($form_id == 'views_form_commerce_cart_form_default'){
+	   //echo'<pre>';
+	   //print_r($form);
+	   $form['actions']['checkout']['#value'] = 'Proceed';
+	   //unset($form['actions']['checkout']['#value']);
+	   if(user_is_anonymous()){
+		   $form['actions']['contact_information'] = array(
+
+           '#markup' => '<a class = "btn btn-info form-submit" href="user/login?destination=cart">Proceed</a>',
+
+        );
+
+	   }
+   		
+   }
+   
+   if($form_id == 'seller_s_details_node_form'){
+	   	$form['field_seller_details_i_have_read']['und']['#title'] = '';
+	   	drupal_set_title(t('Seller’s Details'));
+   }
+   
+   if( $form_id == 'student_availability_node_form' ) {
+   		unset($form['body']);
+   	
+   }
+   if( $form_id == 'sponsored_post_node_form' ) {
+   		unset($form['body']);
+   	
+   }
+   
+   
+}
+
+/**
+ * Implements hook_node_view()
+ */
+function common_node_view($node, $view_mode) {
+	
+	global $base_url;
+
+	if ($node->type=="hire_teacher"){
+		if ($view_mode == 'full'){
+			$node->content['my_extra_content'] = array(
+					"#markup"=> '<div class="hire-tchr-go-chk"><a class="button" href="' . $base_url . '/hire-teacher-go-to-checkout">Go to checkout</a></div>',
+					"#weight"=> 100
+			);
+		}
+		return $node;
+	}
+	if ($node->type=="teachers_professional_training"){
+		if ($view_mode == 'full'){
+			$node->content['my_extra_content'] = array(
+					"#markup"=> '<div><a class="button" href="' . $base_url . '/teachers-professional-training-go-to-checkout">Go to checkout</a></div>',
+					"#weight"=> 100
+			);
+		}
+		return $node;
+	}
+}
+
+function common_node_submit($form, &$form_state)
+{
+    global $base_url;
+
+ $form_state['redirect'] = "$base_url/teacher-evaluation-test";
+   
+}
+
+//common use
+function display( $str ) {
+	echo "<pre>";
+	print_r( $str );
+	echo "</pre>";
+}
+
+
+/*
+ * For View Availability
+ */
+function view_availability() {
+
+	$query_string = $_GET['q'];
+	 
+	$uid = filter_var($query_string, FILTER_SANITIZE_NUMBER_INT);
+	
+	$result = db_select('node', 'n')
+	->fields('n')
+	->condition('uid', $uid,'=')
+	->condition('type', 'teacher_availability','=')
+	->execute()
+	->fetchAssoc();
+	
+	if( $result ) {
+		$arr_bs_data = db_select('field_data_field_book__schedule', 'bs')
+		->fields('bs')
+		->condition('entity_id', $result['nid'],'=')
+		->condition('bundle', 'teacher_availability','=')
+		->condition('entity_type', 'node','=')
+		->execute()
+		->fetchAll();
+	}
+	
+	$arr_days = array();
+	$count = count( $arr_bs_data );
+	foreach( $arr_bs_data as $bs_data ) {
+	
+		if( false == in_array($bs_data->field_book__schedule_day, $arr_days) ) {
+			switch( $bs_data->field_book__schedule_day ) {
+				case 1:
+					echo '<div>Monday</div><div>';
+					break;
+				case 2:
+					echo '</div><div>Tuesday</div><div>';
+					break;
+				case 3:
+					echo '</div><div>Wednesday</div><div>';
+					break;
+				case 4:
+					echo '</div><div>Thursday</div><div>';
+					break;
+				case 5:
+					echo '</div><div>Friday</div><div>';
+					break;
+				case 6:
+					echo '</div><div>Saturday</div><div>';
+					break;
+				case 0:
+					echo '</div><div>Sunday</div><div>';
+					break;
+			}
+		} else {
+			echo ',';
+		}
+	
+		echo '  ';
+		echo _office_hours_convert_to_ampm( $bs_data->field_book__schedule_starthours );
+		echo '--';
+		echo _office_hours_convert_to_ampm( $bs_data->field_book__schedule_endhours );
+		
+		if( $count == 1 ) {
+			echo '</div>';
+		}
+		$count--;
+
+		$arr_days[] = $bs_data->field_book__schedule_day;
+	}
+	
+	global $base_url;
+	echo "<div><a href='$base_url/find-teacher-continue?uid=$uid'>Continue</a></div>";
+}
+/**
+ * Implements hook_node_insert()
+ */
+function common_node_insert($node) {
+	
+	global $user;
+	$uid = $user->uid;
+	
+	if($node->type =='store_items' && $node->is_new) {
+
+		$results = db_select('node', 'n')
+						->fields('n')
+						->condition('uid', $uid, '=' )
+						->condition('type', 'seller_s_details', '=' )
+						->execute()
+						->fetchAssoc();
+		
+		if( $results ) {
+			$url_name = db_select('field_data_field_seller_details_store_name', 'sn')
+							->fields('sn')
+							->condition('entity_id', $results['nid'], '=' )
+							->execute()
+							->fetchAssoc();
+			
+			$url = db_select('field_data_field_seller_details_url', 'su')
+							->fields('su')
+							->condition('entity_id', $results['nid'], '=' )
+							->execute()
+							->fetchAssoc();
+		} else {
+			drupal_set_message('Please fill Seller\'s Details','error');
+			//die();
+		}
+						
+		if( $url_name && $url ) {
+			db_drop_primary_key('field_data_field_store_items_url_hidden');
+			db_drop_primary_key('field_data_field_store_items_url_name_hidde');
+			
+			$nid = db_insert('field_data_field_store_items_url_hidden')
+									->fields(array(
+											'entity_type' => 'node',
+											'bundle' => 'store_items',
+											'deleted' => 0,
+											'entity_id' => $node->nid,
+											'revision_id' => 0,
+											'language' => 'und',
+											'delta' => 0,
+											'field_store_items_url_hidden_value' => $url['field_seller_details_url_value'],
+									))
+									->execute();
+			$nid = db_insert('field_data_field_store_items_url_name_hidde')
+									->fields(array(
+											'entity_type' => 'node',
+											'bundle' => 'store_items',
+											'deleted' => 0,
+											'entity_id' => $node->nid,
+											'revision_id' => 0,
+											'language' => 'und',
+											'delta' => 0,
+											'field_store_items_url_name_hidde_value' => $url_name['field_seller_details_store_name_value'],
+									))
+									->execute();
+		}
+	}
+	
+	if($node->type =='seller_s_details' && $node->is_new) {
+		$myuser = user_load($uid);
+		$myuserroles = $myuser->roles;
+		if( false == in_array('seller', $myuserroles) ) {
+			$myuserroles[6] = 'seller';
+		}
+		user_save($myuser, array('roles' => $myuserroles));
+	}
+	
+	if($node->type =='student_availability' && $node->is_new) {
+
+		student_availability_send_mail();
+
+	}
+}
+
+/*
+ * Implements hook_node_update()
+ */
+function common_node_update( $node ) {
+	if( $node->type == 'student_availability' ) {
+		student_availability_send_mail();
+	}
+}
+
+function student_availability_send_mail() {
+	global $user;
+	$user_mail = $user->mail;
+	$user_name = $user->name;
+	
+	$to      = $user_mail;
+	$subject = 'DoLessons Book By Admin';
+	$message = "Dear $user_name
+	Your request has been sent to Admin.";
+	
+	$site_email = variable_get('site_mail', '');
+	$headers = "From: $site_email" . "\r\n" .
+			"Reply-To: $site_email" . "\r\n" .
+			'X-Mailer: PHP/' . phpversion();
+		
+	mail($to, $subject, $message, $headers);
+}
+
+function badge_in() {
+	$query_string = $_GET['q'];
+	
+	$uid = filter_var($query_string, FILTER_SANITIZE_NUMBER_INT);
+	 
+	
+	
+	$result = db_select('node', 'n')
+					->fields('n')
+					->condition('uid', $uid,'=')
+					->condition('type', 'teacher_application_form','=')
+					->execute()
+					->fetchAssoc();
+	 
+	if( $result ) {
+		$arr_bs_data = db_select('field_data_field_teacher_badge_hidden', 'bs')
+		->fields('bs')
+		->condition('entity_id', $result['nid'],'=')
+		->condition('bundle', 'teacher_application_form','=')
+		->condition('entity_type', 'node','=')
+		->execute()
+		->fetchAll();
+	}
+	foreach( $arr_bs_data as $bs_data ) {
+		$term = taxonomy_term_load($bs_data->field_teacher_badge_hidden_tid);
+		echo '<div class="badge-in">Badge in '. $term->name . '</div>';
+	}
+}

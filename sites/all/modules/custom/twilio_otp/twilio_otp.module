@@ -1,0 +1,121 @@
+<?php
+
+/**
+ * @file
+ * Twilio OTP core file.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function twilio_otp_form_USER_REGISTER_FORM_alter(&$form, &$form_state, $form_id) {
+
+  $form['twilio_otp_country_codes'] = array(
+    '#type' => 'select',
+    '#title' => t('Country Codes'),
+    '#options' => twilio_country_codes(),
+  );
+  $form['twilio_otp_mobile'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Mobile Number'),
+    '#size' => 15,
+    '#maxlength' => 15,
+    '#required' => TRUE,
+  );
+  $form['twilio_otp'] = array(
+    '#type' => 'textfield',
+    '#title' => t('OTP'),
+    '#size' => 15,
+    '#maxlength' => 15,
+    '#required' => TRUE,
+  );
+  $form['twilio_otp_send_otp'] = array(
+    '#type' => 'button',
+    '#value' => t('Verify Phone Number'),
+    '#prefix' => '<div class="otp-button">',
+    '#suffix' => '</div>',
+    '#limit_validation_errors' => array($form['twilio_otp_mobile']),
+    '#ajax' => array(
+      'callback' => 'twilio_otp_send_otp_callback',
+    ),
+  );
+  $form['#validate'][] = 'twilio_otp_form_validate';
+}
+
+/**
+ * Send callback function.
+ */
+function twilio_otp_send_otp_callback(&$form, &$form_state) {
+
+  $_SESSION['twilio_otp'] = '';
+
+  $country_codes = $form_state['values']['twilio_otp_country_codes'];
+  $mobile_no = $form_state['values']['twilio_otp_mobile'];
+
+  $six_digit_random_number = mt_rand(100000, 999999);
+
+  $_SESSION['twilio_otp'] = $six_digit_random_number;
+  $message = "Your DoLessons key is: $six_digit_random_number";
+
+  $sent = twilio_send($mobile_no, $message, $country_codes);
+
+  if ($sent) {
+    drupal_set_message(t('OTP Sent on entered mobile number.'));
+  }
+  else {
+    watchdog('twilio_otp', 'Unable to send OTP.');
+  }
+
+  $commands = array();
+  $commands[] = ajax_command_replace('#main-content', theme('status_messages'));
+  return array('#type' => 'ajax', '#commands' => $commands);
+
+}
+
+/**
+ * Form validate.
+ */
+function twilio_otp_form_validate($form, &$form_state) {
+
+  $_SESSION['twilio_otp_country_codes'] = '';
+  $_SESSION['twilio_otp_mobile'] = '';
+
+  if (!isset($_SESSION['twilio_otp'])) {
+    $_SESSION['twilio_otp'] = '';
+  }
+
+  $twilio_otp = $form_state['values']['twilio_otp'];
+  if ($_SESSION['twilio_otp'] != $twilio_otp) {
+    form_set_error('twilio_otp', t("OTP doesn't match"));
+  }
+  $_SESSION['twilio_otp_country_codes'] = $form_state['values']['twilio_otp_country_codes'];
+  $_SESSION['twilio_otp_mobile'] = $form_state['values']['twilio_otp_mobile'];
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function twilio_otp_user_insert(&$edit, $account, $category) {
+
+  if (array_key_exists('twilio_otp_mobile', $_SESSION) && array_key_exists('twilio_otp_country_codes', $_SESSION)) {
+    db_insert('twilio_otp')
+      ->fields(array(
+        'uid' => $account->uid,
+        'mobile_number' => $_SESSION['twilio_otp_mobile'],
+        'country_code' => $_SESSION['twilio_otp_country_codes'],
+      ))
+      ->execute();
+    unset($_SESSION['twilio_otp_mobile']);
+    unset($_SESSION['twilio_otp_country_codes']);
+  }
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function twilio_otp_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'twilio_otp') . '/views',
+  );
+}

@@ -1,0 +1,13 @@
+name = class_subject_search
+description = class subject search
+package = custom
+core = 7.x
+version= 7.x
+scripts[] = js/subject_search.js
+;scripts[] = js/chosen.jquery.js
+;stylesheets[all][] = css/chosen.css
+
+
+
+
+; Information added by Deepesh Arora script on 14-10-2016

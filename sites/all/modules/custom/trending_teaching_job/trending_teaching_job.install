@@ -1,0 +1,55 @@
+<?php
+
+function trending_teaching_job_schema() {
+	
+	$schema['trending_teaching_job_application'] = array(
+			'description' => 'application for trending job',
+			'fields' => array(
+					'id' => array(
+							'description' => 'serial No.',
+							'type' => 'serial',
+							'not null' => TRUE,
+					),
+					'uid_teacher' => array(
+							'description' => 'teacher Uid',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'subject_key' => array(
+                             'description' => 'applied subject key',
+							 'type' => 'varchar',
+                             'length' => 32,
+                             'not null' => TRUE,
+                             'default' => '',
+                   ),
+                   'subject_label' => array(
+                             'description' => 'applied subject label',
+							 'type' => 'varchar',
+                             'length' => 32,
+                             'not null' => TRUE,
+                             'default' => '',
+                   ),
+                   'school_id' => array(
+							'description' => 'school Id',
+							'type' => 'int',
+							'not null' => TRUE,
+				   ),
+					'school_label' => array(
+					        'description' => 'school name',
+							'type' => 'varchar',
+                            'length' => 32,
+                            'not null' => TRUE,
+                            'default' => '',
+				   ),
+					'application_date' => array(
+							'description' => 'datetimestamp',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+			),
+			'primary key' => array('id'),
+	
+);
+	
+	return $schema;
+}

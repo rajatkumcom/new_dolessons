@@ -1,0 +1,34 @@
+name = Online learning website
+description =  Bootstrap Sub-Theme for online learning website
+core = 7.x
+base theme = bootstrap
+engine = phptemplate
+stylesheets[all][] = fonts/styles.css
+stylesheets[all][] = css/font-awesome.min.css
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/responsive.css
+
+
+regions[navigation]     = 'Navigation'
+regions[header]         = 'Top Bar'
+regions[banner]    		= 'Banner'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[full_content]   = 'Content1'
+regions[teachers]   	= 'Teachers staff'
+regions[teachers]   	= 'Teachers staff'
+regions[schools]  		= 'Schools'
+regions[testimonials]  	= 'Testimonials'
+regions[sidebar_second] = 'Secondary'
+regions[footer]         = 'Footer'
+regions[footer_bottom]  = 'Footer bottom'
+regions[page_top]       = 'Page top'
+regions[page_bottom]    = 'Page bottom'
+
+
+
+scripts[] = js/custom.js
+
+
+

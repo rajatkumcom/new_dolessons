@@ -1,0 +1,7 @@
+name = trending teaching job
+description =  teacher apply for trending jobs posted by schools and organization
+package = custom
+core = 7.x
+version=7.x
+
+; Information added by Deepesh Arora script on 4-11-2016

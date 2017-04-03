@@ -1,0 +1,782 @@
+@media only screen and (max-width: 1300px){
+	/* page-node-add-teacher-application-form csss start*/
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #tchr-personel-info #edit-field-teacher-sex{width:34%;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3 #edit-field-teacher-home-town{width:97.5%;}
+	.banner-text h1{font-size:34px; line-height:40px;}
+	.banner-text span{margin-top:15px;}
+	.banner-text p{font-size:18px; line-height:24px;margin-top:10px}
+	.banner-text{left:22%;}
+	.What-we-do{padding:0px 15px;}
+	/* page-node-add-teacher-application-form csss end*/
+}
+
+
+@media only screen and (max-width: 1200px){
+	.testimonial_txt{width: 89%;}
+	.left_content ul li{margin-left:15px;}
+	.left_content{width:66%;}
+	 .table-responsive{overflow-x:auto;}
+	 .view-seller-dashboard-info .fields{width: 100%;padding: 5px 16px 5px 0;}
+	 #block-block-8{padding-left: 10px;float: right;}
+	.view-student-dashboard-info .fields{width: 100%;padding: 5px 16px 5px 0;}
+	 .page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-type-textfield{margin-left: 28px;}
+	 .page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-sex{margin-left: 20px;}
+	 .page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob{width:49.6%;}
+	 .page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob #edit-dob .form-item{margin-right:20px;width:29%;}
+	 
+	 /* page-node-add-teacher-application-form csss start*/
+	 .page-node-add-teacher-application-form .node-teacher_application_form-form{padding:0px 40px;}
+	 .page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp-2{width:22%;}
+	 .page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3{width:78%;}
+	 .page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3 .form-item-field-teacher-state-of-origin-und-0-tid label.control-label{margin:15px 15px 0px;}
+	 .page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-7 .field-type-taxonomy-term-reference{padding-right:20px;}
+	 .page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-7 .field-type-taxonomy-term-reference .select-wrapper{padding-right:10px;}
+	 /* page-node-add-teacher-application-form csss end*/
+	 
+	 /* submit page form css */
+	
+	 .node-type-webform .webform-client-form-115{padding:0px 5px;}
+	 /* submit page form css */
+	 
+	 /* service page form css */
+	 .page-node-add-service-feedback-information .node-service_feedback_information-form .group-name-class-group .form-wrapper.form-group{width:31%;}
+	 .page-node-add-service-feedback-information .node-service_feedback_information-form{padding:0px 20px;}
+	  /* service page form css */
+	.block-commerce-ajax-basket-link{padding-right:20px;margin:3px 0px;}
+	
+	
+	/* hire page css start */
+	.node-hire_teacher-form .form-wrapper.form-group{width:33%;}
+	/* hire page css start */
+	
+	/* find a teachr page css */
+	.view-filter-teacher .table-responsive{overflow:hidden;width:100%;}
+	.view-filter-teacher .table-responsive table{width:100%;max-width:100%;}
+	.teacher-data-wrap .teacher-data{width:86%;}
+	.back-to-dashboard{padding-right:30px;}
+	/* find a teachr page css */
+
+	/* Store page css starts here */
+	.item-desc{width: 59%;}
+	.item-desc form p a{font-size: 12px;}
+	
+}
+
+@media only screen and (max-width: 1024px){
+	.container{width: 98%;padding: 0px;}
+	.banner-text{width: 70%;left:19%;}
+	#block-views-front-banner-block .flexslider .slides img{min-height: 500px;}
+	.middle-content, .right-content{margin-left: 85px;}
+	.find_teacher p{min-height: 102px;}
+	.teacher_staff{margin-left: 23px;}
+	.school_info{width: 67%;padding-left: 10px;}
+	.join_schools ul li{margin-left: 28px;}
+	.join_schools ul li.advertise .school_info a{font-size: 11px;}
+	.testimonial_block{padding: 18px 0 47px;}
+	.newsletter .form-group{width: 66%;} 
+	#subscribe #edit-newsletter-submit{font-size:12px;}
+	#newsletter-subscribe-form .form-item-email .form-control{padding: 6px 4px;}
+	#subscribe{width: 34%;}
+	.right_section ul li{margin-left: 30px;width: 46%;}
+	#user_login_form{width: 50%;}
+	#user-login .hybridauth-widget-wrapper ul.hybridauth-widget{width: 97%;}
+	#user-register-form #edit-account .form-item-pass .form-type-password{width: 48.6%;}
+	#user-register-form #edit-profile-main .panel-body .field-name-field-last-name{width: 48%;}
+	.captcha{width: 43%;}
+	.form-item-captcha-response input{width: 56.5%;}
+	.contact-address .middle-address{margin-left: 105px;}
+	.testimonial_txt{width: 90%;}
+	#edit-profile-teacher-profile .form-wrapper:nth-child(2n){margin-left: 16px;}
+	/*node-type-book-lessons css start*/
+	 .node-type-book-lessons .node-book-lessons .field-type-text-with-summary{width: 75%;}
+	 .node-type-book-lessons .commerce-product-field-field-image-logo{width: 25%;}
+	/* node-type-book-lessons css end*/
+	#block-dashboard-dashboard-seller-block{width: 31%;float: left;}
+	#block-views-seller-dashboard-info-block{margin-left: 12px;padding-top: 15px;padding-left: 14px;width: 44%;}
+	.view-seller-dashboard-info .fields{padding: 7px 16px 7px 0;width: 100%;}
+	.view-seller-dashboard-info .view-footer a{margin: 35px 0px;}
+	#block-dashboard-dashboard-student-block{width: 31%;float: left;}
+	#block-views-student-dashboard-info-block{margin-left: 12px;padding-top: 15px;padding-left: 14px;width: 44%;}
+	.view-student-dashboard-info .fields{padding: 7px 16px 7px 0;width: 100%;}
+	.view-student-dashboard-info .view-footer a{margin: 35px 0px;}
+	
+	/* page-career-apply-job  css start*/
+	.page-career-apply-job #ajax_form_multistep_form form{padding:0px 15px;}
+	.page-career-apply-job #ajax_form_multistep_form img.some-img{width:auto;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob #edit-dob .form-item{width:29%;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-sex{width:13.5%;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-7 .field-type-taxonomy-term-reference{width:100%;padding-right:0;margin-bottom:30px;}
+	/* page-career-apply-job  css end*/
+	form.node-gift_cards-form{padding:0 20px;}
+	.node-type-hire-teacher article.node-hire-teacher{padding:0 20px;}
+	
+	
+}
+
+@media only screen and (max-width: 992px){
+    .navbar-nav > li{margin:0;}
+	#block-views-front-banner-block .flexslider .slides img{min-height: 411px;}
+	.feature_block{width: 78%;}
+	.featured ul li{line-height: 24px;}
+	.middle-content, .right-content{margin-left: 23px;width: 27.5%}
+	.do_lesson h2{font-size: 21px;}
+	.teacher_staff{margin-left: 18px;}
+	.teacher_staff h5{font-size: 15px;}
+	.school_image{width: 33%;padding-left: 0px;}
+	.join_schools ul li{margin-left: 10px;width: 32.3%;}
+	.school_info h5{font-size: 17px;}
+	.school_info p{font-size: 14px;}
+	.join_schools ul li.advertise .school_info a{font-size: 8px;}
+	.testimonial_image{margin-right: 40px;}
+	.testimonials{background-size: 100% 100%;}
+	.navbar-nav > li > a{margin-left: 0px;}
+	.left_content ul li{margin-left: 10px!important;}
+	.top_menu ul li{margin-left: 10px;}
+	.right_content ul li a{font-size: 12px;padding: 0 7px;line-height:24px}
+	.left_content ul li .fa{margin-right: 2px;}
+	
+	.featured_right{padding-left: 15px;}
+	.testimonial_text{width: 75%;}
+	.breadcrumb{padding: 28px 0 0 165px;}
+	.right_section ul li{width: 48%;margin-left: 10px;}
+	.expert_teachers, .vision{padding-bottom: 15px;}
+	.vision h4, .expert_teachers h4{padding-top: 13px;}
+	.focus{padding-top: 15px;padding-bottom: 15px;}
+	.focus .left_section{padding-top: 0px;}
+	#user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-facebook-hybridauth-32::before,#user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-twitter-hybridauth-32:before,#user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-google-hybridauth-32:before{width: 263px;}
+	.form-item-captcha-response input{width: 55.5%;}
+	.captcha{width: 54%;}
+	.right-address a{padding: 4px 27px;}
+	.contact-address .middle-address{margin-left: 30px;}
+	.testimonial_txt{width: 86%;}
+	.blog{padding: 0px 10px;}
+	.inner_blog{padding: 25px 23px 28px;}
+	.node-type-blog .page-header{font-size: 35px;}
+	#edit-profile-teacher-profile .form-wrapper:nth-child(2n){margin-left: 14px;}
+	.teacher_register .select-wrapper{margin-right: 2px;}
+	.carrers .view_more{padding-right: 5px;}
+	.carrers .table > thead > tr > th:first-child,.carrers .table > tbody > tr > td:first-child{padding-left: 10px;}
+	.carrers .table > thead > tr > th.views-field-nothing-1, .carrers .table > tbody > tr > td.views-field-nothing-1{width: 200px;}
+	/* 18 march css start */
+	.page-book-lessons .view-book-lessons .item-list ul li{width:24%;}
+	.page-book-lessons .view-book-lessons .item-list ul{padding-left:0;}
+	#page-header{width:100%; float:left;}
+	.left_content ul li .fa{padding-top:0;}
+	.left_content ul li.teachers{padding-left: 17px;}
+	.left_content ul li:first-child{margin-left:0!important;font-size:13px;line-height:16px;font-weight: bold;}
+	.left_content ul li:last-child{margin:0 0px 0 10px!important;}
+	.left_content ul li a{font-size:13px;line-height:16px;}
+	.navbar-nav > li{margin-left: 10px;}
+	.navbar-nav > li > a{font-size:13px;line-height:16px;padding: 15px 5px;}
+	.navbar-nav > li{margin-left:0;}
+	.menu.navbar-nav{padding:15px;}
+	.navbar-nav .open .dropdown-menu > li > a{padding: 10px 0 10px 10px;}
+	.right_content{width:100%; float:right;}
+	.right_content ul{text-align:right;float:right;}
+	.left_content{width:80%;margin: 15px 0 5px;}
+	.left_content ul{float:right; text-align: right;}
+	/* 18 march css end */
+	.node-type-book-lessons .view-book-lessons .view-footer div a,.page-cart #views-form-commerce-cart-form-default .commerce-line-item-actions .form-submit{margin-right:10px;}
+	.page-cart .line-item-total{ padding-right: 10px;}
+	/* page-career-apply-job  css start*/
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob #edit-dob .form-item{width:27%;}
+	.page-career-apply-job #ajax_form_multistep_form input#edit-user-profile-image-upload.form-control{  width: 38%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-type-textfield{margin-left: 20px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-adres-info,.page-career-apply-job #ajax_form_multistep_form #edit-user-profile-image-ajax-wrapper{width:78%;}
+	.page-career-apply-job #ajax_form_multistep_form #teacher-img{width:20%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-type-textfield{margin-left:20px;}
+	/* page-career-apply-job  css end*/
+	.page-manage-videos .view-id-manage_videos_ .view-header a,.page-manage-images .view-id-manage_images .view-header a{margin-right:10px;}
+	.page-manage-videos .view-id-manage_videos_ .table-responsive thead th.views-field,.page-manage-images .view-id-manage_images .table-responsive thead th.views-field{font-size:16px;}
+	.page-manage-videos .view-id-manage_videos_ .table-responsive tbody tr td, .page-manage-videos .view-id-manage_videos_ .table-responsive tbody tr td a,.page-manage-images .view-id-manage_images .table-responsive tbody tr td,.page-manage-images .view-id-manage_images .table-responsive tbody tr td a{font-size:14px;}
+	/* page-node-add-teacher-application-form csss start*/
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3 .form-item-field-teacher-state-of-origin-und-0-tid label.control-label{width:100%;margin:0px 0px 15px 0px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3 .form-item-field-teacher-state-of-origin-und-0-tid .select-wrapper{width:33%;padding:0px 15px 0px 0px}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3 #edit-field-teacher-home-town{width:96.5%;margin-top:15px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-5 .field-type-text{padding-right:15px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .field-group-div #edit-field-teacher-mobile{padding-left:15px;}
+	.What-we-do h2{font-size:28px;line-height:34px;}
+	.What-we-do .lessons-wrap h3{font-size:20px;line-height:28px;}
+	.What-we-do .lessons-wrap ul{padding-left:20px;}
+	/* page-node-add-teacher-application-form csss end*/
+	
+	/* hire page css start */
+	.node-hire_teacher-form .form-wrapper.form-group label.control-label{font-size:14px;line-height:20px;}
+	/* hire page css start */
+	
+	
+	/* find a teachr page css */
+	.teacher-data-wrap .teacher-data{width:82%;}
+	/* find a teachr page css */
+	
+	
+	/* teacher calender */
+	.view-teachers-training-calendar .views-row{width:48%;margin:0 0 35px;}
+	.view-teachers-training-calendar .views-row:nth-child(even){float:right;}
+	/* teacher calender */
+
+	/* Store page css starts here */
+	
+	.store-fields .views-row .image{text-align: center;}
+	.store-fields .views-row .image img{display: inline-block;max-width: 100%;text-align: center;}
+	.item-desc{padding-left: 0px;width: 100%;padding-top: 10px;}
+	.item-desc span{margin: 6px 0px 0px;}
+    .connect_us{width:32%;}
+	.footer_links{width:68%;}
+	.node-type-hire-teacher article.node-hire-teacher .group-fields-group .field-label{width:25%;}
+	.node-type-hire-teacher article.node-hire-teacher .group-fields-group .field-items{width:75%;}
+	.node-upload-ad-banner{padding:0 15px;}
+	.view-video.view-id-video{padding:0 15px;}
+	.node-gift_cards-form .gift-card-Image-group{width:50%;float:none;margin:0 auto;}
+	.node-gift_cards-form .gift-card-info-group{width:100%;padding:0;margin:40px 0 20px;}
+	#edit-field-gift-card-balance a{font-size:18px;}
+	.group-gift-card-img-main{margin-bottom:30px;}
+	.node-gift_cards-form #edit-actions{width:100%;padding:0;}
+	.gift-faqs{padding:0 15px;}
+	.node-form.node-testimonial-form{padding:0 15px;}
+	.store-fields .view-filters{width:40%;}
+	.page-store .store-fields .view-content{width:60%;}
+    .store-fields .views-row{width:50%;}
+    .store-fields .views-row .views-field.views-field-nothing{min-height:270px;}
+	
+    
+}
+
+@media only screen and (max-width: 980px){
+	/* tb mega menu css  */
+    .region-navigation .tb-megamenu .nav-collapse.in{height:auto!important;}
+    .region-navigation .tb-megamenu.animate .mega > .mega-dropdown-menu{opacity:0;}
+    .region-navigation .tb-megamenu .nav-collapse{width:100%;margin-top: 0; top: 50px;right:-1000px;}
+	.region-navigation .tb-megamenu .nav-collapse.in{right:0;}
+	.region-navigation .tb-megamenu.style-blue .nav a span.caret{ display: block !important; margin-top: 0;position: absolute;right: 0; top: 50%;}
+	.tb-megamenu .tb-block .block-inner ul{background: #fff none repeat scroll 0 0;float: left;padding: 10px; width: 100%;}
+	.tb-megamenu .tb-block .block-inner ul li{ border: medium none; float: left; margin: 0 !important;  min-height: 80px; padding: 10px !important;}
+	.block-inner{background: #fff none repeat scroll 0 0; float: left; padding: 10px; width: 100%;}
+	.tb-megamenu .caret{border-top: 10px solid #000;border-right: 10px solid transparent;border-left: 10px solid transparent;right:20px!important; z-index:9999;}
+	.region-navigation .open-link.mega > .mega-dropdown-menu{opacity:1!important;display:block;position:relative!important;padding:0!important;top:0!important;}
+	.banner{position:relative!important;}
+	.banner .navbar-collapse.collapse{display:block;}
+	.navbar-header .navbar-default .navbar-toggle{display:none;}
+	.inner-menu img{width:50px;margin-bottom:0;}
+   .region-navigation .tb-megamenu.style-blue .nav .block-inner a { display: inline-block; margin-bottom: 5px;  padding: 0;}
+   .region-navigation .tb-megamenu.style-blue .nav .block-inner h3{font-size:18px;line-height:30px;}
+   /* tb mega menu css  */
+	
+	
+	
+	
+}
+@media only screen and (max-width: 767px){
+     #navbar .container{position:relative;}
+    .breadcrumb{padding:0 0 0 20px;}
+	.container{width: 100%;}
+	.top_menu ul li{margin-left: 19px;}
+	.top_menu .left_content ul li{margin-left: 6px;}
+	.top_menu ul li:first-child{margin-left: 0px;}
+	.right_content{float: none;display: inline-block;width: 100%;text-align: center; padding: 0 18px;}
+	.left_content ul li.train{margin-top: 5px;}
+	.navbar-toggle{margin-top: 0px;position:absolute; bottom:-50px; right:0; z-index: 10;background-color:#fff;}
+	.banner-text h1{font-size: 29px;}
+	.top_menu ul li{float: none;display: inline-block;}
+	.banner-text p{width: 100%;font-size: 17px;line-height: 29px;}
+	#block-views-front-banner-block .flexslider .slides img{min-height: 295px;}
+	.banner-text{left:14%;top:10%;}
+	.feature_block,.left-content,.middle-content, .right-content{width: 100%;margin-left: 0px;}
+	.featured_left,.featured_right{width: 100%;padding-left: 0px;border: none;}
+	.add_block{width: 100%;text-align: center;}
+	.find_teacher p{min-height: auto;}
+	.find_teacher a{margin-top: 10px;margin-bottom: 15px;}
+	.teacher_lesson{padding: 10px;}
+	.do_lesson{margin-top: 0px;padding-top: 0px;}
+	.feature_block{padding: 0px 10px;}
+	.lesson_kids, .academic{width: 100%;padding: 20px 10px 0px 10px;}
+	.teacher_staff{width: 48%;margin-left: 19px;margin-bottom: 0px;}
+	.teacher_info .views-row-3 .teacher_staff{margin-left: 0px;}
+	.join_schools ul li{width: 100%;margin-left: 0px;margin-bottom: 10px;}
+	.school_info p{min-height: auto;}
+	.school_image{text-align: center;padding-top: 60px;}
+	.join_schools{padding: 10px 0px;}
+	.join_schools ul li.advertise .school_info a{font-size: 14px;padding: 0 15px;}
+	.testimonial_text{padding: 0 15px;width: 67%;}
+	.testimonial_image{margin-right: 18px;}
+	.footer_links{width: 100%;padding: 0px 10px;}
+	footer .nav > li{width: 48%;margin-bottom: 15px;min-height: 185px;}
+	.connect_us{width: 100%;padding: 0px 10px;}
+	.social-links{width:48%;float:left;}
+	.footer-news{width:50%;float:left;max-width:100%;margin:0;}
+	.newsletter{width: 48%;}
+	#newsletter-subscribe-form{margin-top: 40px;}
+	.footer_top{padding-bottom: 20px;}
+	.container > .navbar-header{margin-left: 0px;margin-right: 0px;float: right;}
+	.body_content{margin-top: 18px;}
+	.teacher_lesson{margin-top: 15px;}
+	#page-header{width: 100%;}
+	.navbar .logo{width: auto;left: 12px;top: 10px;z-index:0;bottom:0px}
+	
+	.navbar-nav{margin: 0px;width: 100%; background: #3b5998;margin: 0;position: absolute;top: 66px;z-index: 9999;}
+	.banner,.navbar-collapse{position: initial;}
+	nav ul li a{border-bottom: none;padding: 10px 9px;}
+	.nav > li > a:hover, .nav > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus{border: none;}
+	nav ul li a:hover{background: #95caf7;}
+	.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus,nav ul li .dropdown-menu a{background: #95caf7;}
+	.navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus{background: #3b5998;color: #fff;}
+	
+	.navbar-default .navbar-toggle{display:none;}
+	.navbar-default .navbar-toggle .icon-bar{background-color: #3b5998;}
+	.navbar-collapse.in{overflow-y:visible;border:none;box-shadow: none;}
+	.not-front nav{ top: 90px;position: absolute;}
+	.navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:hover{color: #fff;}
+
+	.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{color: #fff;background-color: transparent;}
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a,.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{color: #fff;}
+	.not-front .navbar-nav > li > a{line-height: 20px;}
+	.left_section,.right_section{width: 100%;}
+	.about_us img{max-width: 100%;width: 100%;}
+	.results_driven .right_section{margin-top: 10px;}
+	.what_do, .expert_teachers, .teachers_innovative, .focus, .vision, .results_driven{margin-bottom: 10px;}
+	.what_do .left_section,.expert_teachers .right_section,.results_driven,.what_do .right_section{padding: 0px 10px;}
+	.what_do .right_section{margin-top: 15px;}
+	.right_section ul li{width: 49%;margin-left: 9px;}
+	.not-front .main-container{margin-top: 10px;}
+	.teachers_innovative .left_section,.focus .left_section{padding-left: 0px;}
+	.teachers_innovative,.vision .right_section,.focus .left_section{padding: 0px 10px;}
+	.privacy_policy,.terms_use{padding: 0px 10px;}
+	.page-header{font-size: 35px;margin:20px 0px;}
+	.privacy_policy h4{font-size: 18px;}
+	.inner_terms{margin: 7px 0 7px 41px;}
+	.use_account{margin-left: 0px;}
+	.use_account p{padding-left: 15px;}
+	#user_login_form{width: 100%;padding: 0px 10px;}
+	.not-logged-in.page-user .nav-tabs > li.active > a{margin-left: 10px;}
+	#user-login .hybridauth-widget-wrapper::before{display: none;}
+	#user-login .hybridauth-widget-wrapper{padding: 0px 10px;width: 100%;margin-top: 15px;}
+	#user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-facebook-hybridauth-32::before, #user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-twitter-hybridauth-32::before, #user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-google-hybridauth-32::before{width: 84%;font-size: 15px;}
+	#user-register-form{padding: 0px 10px;}
+	#user-register-form #edit-account .form-item-pass .form-type-password,#user-register-form #edit-profile-main .panel-body .field-name-field-name,#user-register-form #edit-profile-main .panel-body .field-name-field-last-name{width: 100%;}
+	#user-register-form #edit-account .form-item-pass .form-type-password,#user-register-form #edit-profile-main .panel-body .field-name-field-last-name{margin-left: 0px;}
+	.captcha{width: 100%;}
+	#user-register-form #edit-actions .btn-default{padding:0px 90px}
+	#user-register-form #edit-profile-main #profile-main-field-state1-add-more-wrapper .select-wrapper{width: 100%;margin-right: 0px;}
+	.form-item-captcha-response input{width: 60%;}
+	.captcha img{width: 40%;}
+	.form-item-pass-pass2{margin-top: 15px;}
+	.conatct_details{padding: 0px 10px;}
+	.contact-address .left-address,.contact-address .middle-address,.right-address{width: 100%;margin-left: 0px;}
+	.contact-address .middle-address{margin-top: 35px;}
+	.contact-address .right-address{width: 100%;text-align: center;float: left;margin-top: 20px;}
+	.right-address a{float: none;display: inline-block;}
+	.contact-address{margin-bottom: 20px;}
+	.middle-address p{width: 100%;float: left;}
+	.testimonial ul li{padding: 0px 10px;}
+	.testimonial_txt{width: 81%;padding-left: 30px;padding-right: 30px;width: 100%;margin-left: 0px;text-align: center;}
+	.testimonial_img{float: none;text-align: center;}
+	.testimonial_img img{display: inline-block;}
+	.page-blog #block-system-main{width: 100%;}
+	.inner_blog h3{font-size: 23px;}
+	.page-blog #block-system-main{margin-bottom: 20px;}
+	.inner_blog p.comments{margin-bottom: 20px;}
+	.recent_posts, .page-blog .blog_search{width: 100%;padding: 0px 10px;}
+	.recent_posts{margin-bottom: 20px;}
+	.node-type-blog .page-header{font-size: 20px;}
+	.node-blog{padding: 0px 10px;}
+	.faq ul.quicktabs-tabs.quicktabs-style-garland li a:link, .faq ul.quicktabs-tabs.quicktabs-style-garland li a:visited{padding: 8px 30px;}
+	.page-node-16 .page-header{font-size: 17px;}
+	.faq .ui-accordion{padding: 0px 10px;}
+	.faq .pagination{margin-left: 10px;}
+	.faq .ui-accordion .ui-accordion-header{background: url("../images/plus.png") no-repeat scroll 97% 48%;}
+	.faq .ui-accordion .ui-accordion-header.ui-state-active{background: url("../images/minus.png") no-repeat scroll 97% 48%;}
+	.faq{margin-bottom: 20px;}
+	#edit-profile-teacher-profile .form-wrapper{width: 100%;}
+	#edit-profile-teacher-profile .form-wrapper:nth-child(2n){margin-left: 0px;}
+	.carrers .view-header{padding: 0px 10px;}
+	.carrers .view-header p{font-size: 13px;}
+	.table-responsive > .table > thead > tr > th, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > tbody > tr > td, .table-responsive > .table > tfoot > tr > td{white-space: inherit;}
+	.carrers .table > thead > tr > th.views-field-nothing-1, .carrers .table > tbody > tr > td.views-field-nothing-1{width: 120px;}
+	.carrers .table{max-width: inherit;width: 670px;}
+	.top_menu .left_content{text-align: center;padding: 0px 10px;}
+	.page-forum #forum,.latest_question,.related_question{padding: 0px 10px;}
+	.page-forum ul.action-links li{padding-left: 10px;}
+	.page-forum #forum a,.latest_question a,.related_question a{font-size: 14px;}
+	.latest_question h2,.related_question h2{font-size: 35px;}
+	
+	
+	/* page book lessons start */
+	.page-book-lessons .view-book-lessons .item-list ul li{width:30%;}
+	.left_content{width:53%;}
+	
+	.navbar .logo{top:12px;max-width:130px;}
+    .right_content{margin:30px 0 0px;}
+    .navbar-toggle{bottom: 0; height: 36px; top: 15px; width: 43px;}
+	.top_menu .left_content{width:100%;text-align:center;}
+	.left_content ul{text-align:center;}
+	.right_content ul{ float: left; text-align: center;width: 100%;}
+	.right_content ul li:first-child{width:37%;float:left;}
+	.right_content ul li a{width:100%;font-size: 14px;line-height:24px;}
+	.right_content ul li{width:33%;float:none; text-align:center;margin:0px;}
+	.right_content ul li:last-child{width:22%;float:right;}
+	.top_menu .left_content ul li{margin-bottom:5px;}
+	.container > .navbar-header{text-align:center;}
+	.navbar .logo{  float: none !important;  left: 0;margin: 0 !important; position: relative;}
+	.navbar .logo img{width:120px;}
+	.navbar-header{width:100%; float:left;}
+	.left_content ul{width:100%;}
+	/* page book lessons end*/
+	
+	/* node-type-book-lessons css satrt*/
+	.node-type-book-lessons .commerce-product-field-field-image-logo{width:100%;}
+	.node-type-book-lessons .commerce-product-field-field-image-logo .field-type-image{width:30%; margin:0 auto;float:none;}
+	.node-type-book-lessons .node-book-lessons .field-type-text-with-summary{width:100%; padding:0 15px; margin:30px 0px 15px;}
+	.node-type-book-lessons .view-id-book_lessons .table-responsive thead tr th, .page-cart #views-form-commerce-cart-form-default .table-responsive thead tr th,.node-type-book-lessons .view-id-book_lessons .table-responsive tbody tr td, .page-cart #views-form-commerce-cart-form-default .table-responsive tbody tr td{font-size:14px;line-height:18px;padding: 8px 10px;}
+	.node-type-book-lessons .view-book-lessons .view-footer div a,.page-cart #views-form-commerce-cart-form-default .commerce-line-item-actions .form-submit{font-size:16px;line-height:20px;}
+	.table-responsive{margin-top:0;}
+	/* node-type-book-lessons css end*/
+
+	#block-dashboard-dashboard-seller-block{width: 100%;}
+	#block-views-seller-dashboard-info-block,#block-block-8{padding-left: 0px;width: 100%;margin-left: 0px;padding: 0px 10px;}
+	#block-dashboard-dashboard-seller-block{margin-bottom: 18px;}
+	#block-block-8{float: none;text-align: center;padding: 10px 0px;display: inline-block;}
+	.personal_detail_biography{padding-top: 5px;}
+	.manage-dashboard-profile{padding-top: 10px;}
+	.manage-dashboard-profile h3{margin-bottom: 5px;}
+	.page-seller-dashboard .page-header{margin: 0px;}
+	.view-seller-dashboard-info .view-footer a{margin: 15px 0px;padding: 9px 30px;}
+
+	#block-dashboard-dashboard-student-block{width: 100%;}
+	#block-views-student-dashboard-info-block{padding-left: 0px;width: 100%;margin-left: 0px;padding: 0px 10px;}
+	#block-dashboard-dashboard-student-block{margin-bottom: 18px;}
+	.page-student-dashboard .page-header{margin: 0px;}
+	.view-student-dashboard-info .view-footer a{margin: 15px 0px;padding: 9px 30px;}
+	
+	/* page-career-apply-job  css start*/
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item input, .page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item select,.page-career-apply-job #ajax_form_multistep_form .box-adres-info .form-item input, .page-career-apply-job #ajax_form_multistep_form .box-adres-info .form-item select,.page-career-apply-job #ajax_form_multistep_form form .step2-box input,.page-career-apply-job #ajax_form_multistep_form form .step2-box select{font-size:12px;padding:6px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-step-1{width:28%;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-sex{ margin-left: 20px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob{width: 51.8%;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob #edit-dob .form-item{margin-right: 20px;width:26%;}
+	.page-career-apply-job #ajax_form_multistep_form input#edit-user-profile-image-upload.form-control{width:55%;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info{margin:30px 0px 20px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-adres-info{width:100%;}
+	.page-career-apply-job #ajax_form_multistep_form #edit-user-profile-image-ajax-wrapper{width:70%}
+	.page-career-apply-job #ajax_form_multistep_form #teacher-img{width:26%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-item-step-2.form-type-textfield{width:47%;}
+	.page-career-apply-job #ajax_form_multistep_form form #edit-buttons--2{ margin: 30px 0;}
+	.page-career-apply-job #ajax_form_multistep_form #edit-buttons{ margin: 10px 0 30px;}
+	/* page-career-apply-job  css end*/
+	.page-manage-videos .view-id-manage_videos_ .table-responsive thead th.views-field,.page-manage-images .view-id-manage_images .table-responsive thead th.views-field{vertical-align:top;}
+	
+	/* page-node-add-teacher-application-form csss start*/
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #tchr-personel-info #edit-field-teacher-sex .form-type-radio{min-width:65px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp-2{width:100%;text-align:center;  margin-top: 10px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #edit-field-teacher-user-profile-image-und-0-upload{margin:0 auto;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3{width:100%;}
+	.main-container h1{padding:0px 15px;}
+	.page-node-add-teacher-application-form .main-container h1{font-size:26px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-5 .field-type-text{width:50%;margin-bottom:30px}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-5 #edit-field-teacher-bus-stop{padding-right:15px;}
+	
+	.page-node-add-teacher-application-form #edit-field-teacher-upload-resume, .page-node-add-teacher-application-form #edit-field-teacher-upload-waec, .page-node-add-teacher-application-form #edit-field-teacher-upload-degree, .page-node-add-teacher-application-form #edit-field-teacher-upload-id, .page-node-add-teacher-application-form #edit-field-teacher-upload-masters, .page-node-add-teacher-application-form #edit-field-teacher-upload-phd-degree{width:100%;padding:0;}
+	/* page-node-add-teacher-application-form csss end*/
+	
+	/* submit page form css */
+	.node-type-webform .webform-client-form-115 .form-item{width:50%;}
+	.node-type-webform .webform-client-form-115 .form-item.webform-component--message{width:70%;}
+	.node-type-webform .webform-client-form-115 .form-item.webform-component--priority{width:30%;}
+	.What-we-do .lessons-wrap{margin-top:20px;}
+	.What-we-do .ranking.lessons-wrap{margin-top:0;}
+	/* submit page form css */
+	
+	/* service page form css */
+	.page-node-add-service-feedback-information h1.page-header{font-size:28px;line-height:34px;}
+	.page-node-add-service-feedback-information .node-service_feedback_information-form .group-name-class-group .form-wrapper.form-group{width:50%;padding-right:20px;margin-bottom:20px;}
+	.page-node-add-service-feedback-information .node-service_feedback_information-form .group-name-class-group .field-name-field-srvc-class-student{margin:0;padding:0;}
+	.page-node-add-service-feedback-information .node-service_feedback_information-form .group-student-details .form-wrapper.form-group #field-student-id-add-more-wrapper input{width:70%;}
+	.ques-descrilit{padding:0px 15px;}
+	/* service page form css */
+	
+	/* test pages work start */
+	.testpage-content,.test-logo{padding:0 20px;}
+	.test-wrap p,.test-logo p{font-size:15px;line-height:20px;}
+	.testpage-content h3{font-size:18px;line-height:26px;}
+	.test-table-wrap{display:block;overflow:scroll;}
+	.test-table-wrap .test-table{min-width:800px;margin-bottom:20px;}
+	.test-page{padding:0 15px;width:100%;float:left;}
+	.take-test a{font-size:16px;line-height:20px;padding: 10px 15px;}
+	.test-table-wrap .test-table tr th, .test-table-wrap .test-table tr td{font-size:15px;line-height:20px;}
+	/* test pages work start */
+	
+	/* hire page css start */
+	.group-head-teachers-group h3{padding:0;}
+	.group-subject-teachers-group h3{padding:0;}
+	/* hire page css start */
+	
+	/* find a teachr page css */
+	.view-filter-teacher{padding:0 20px;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_classes_and_subjects_hidde_tid{padding-left:0!important;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_classes_and_subjects_hidde_tid,.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_teacher_state_of_origin_tid{width:50%;padding:20px;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_teacher_state_of_origin_tid{padding-right:0;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_teacher_state_of_origin_tid .form-item.form-group{border:none;padding:0;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_teacher_state_of_origin_tid .select-wrapper{width:100%;padding:0;margin-bottom:10px}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_teacher_state_of_origin_tid .select-wrapper:last-child{padding:0;margin:0;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .control-label{right:20px;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-submit-button{width:100%;padding:0; margin: 0 0 20px;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-submit-button .btn{margin:0;}
+	.teacher-data-wrap .teacher-data{padding:0;width:100%;margin:20px 0;}
+	
+	/* find a teachr page css */
+	
+	/* teacher calender */
+	.view-teachers-training-calendar{padding:0 15px;}
+	.view-teachers-training-calendar .views-row{padding:15px;}
+	.training-duration-wrap li .duration-list li{padding:0 10px;font-size: 13px;}
+	.view-teachers-training-calendar .views-row a{font-size:16px;line-height:24px;}
+	/* teacher calender */
+
+	/* Store page css starts here */
+	.store-fields{width: 96%;margin: 0 auto;}
+	.store-fields .views-row{width: 50%;}
+	#edit-combine-wrapper{width: 200px;}
+	.store-fields .views-row{min-height:275px;}
+	.store-fields .views-row .image{width:100%}
+	
+	.teacher-training-calendar-table tbody td,.view-footer ul li,.train-dolessons p{font-size: 14px;}
+	.page-teachers-training-calendar .page-header{font-size: 25px;}
+	.training-calendar{text-align: center;}
+	#views-exposed-form-store-page #edit-type-1-wrapper{width:100%;padding:10px 0 0;}
+	#views-exposed-form-store-page #edit-combine-wrapper{width:100%;}
+	#views-exposed-form-store-page .views-submit-button{width:65%;}
+	.store-fields .views-row .views-field.views-field-nothing{min-height:240px;}
+	.page-store-all .item-desc span{margin:10px 0 0}
+	.node-type-hire-teacher article.node-hire-teacher .group-fields-group .field-label{width:30%;}
+	.node-type-hire-teacher article.node-hire-teacher .group-fields-group .field-items{width:70%;}
+	.node-upload-ad-banner .field.field-label-above .field-label{width:29%;}
+	.node-upload-ad-banner .field.field-label-above .field-items{width:71%;}
+	.videos #edit-term-node-tid-depth-wrapper .bef-checkboxes{width:100%;float:left;}
+	.videos #edit-term-node-tid-depth-wrapper .bef-checkboxes .form-item{float:left;padding-right:10px;}
+	.videos #edit-term-node-tid-depth-wrapper .bef-checkboxes .form-item:first-child{padding:0;}
+	.videos .view-filters{width:100%;margin:0;}
+	.videos .view-content{width:100%;padding:0;margin-top:20px;}
+	.videos{margin-bottom:50px;}
+	.node-gift_cards-form .gift-card-Image-group{width:60%;float:none;margin:0 auto;}
+    .block-class-subject-search{position:relative;bottom:0;margin:15px 0;padding: 0 15px;}
+	.search-screen{width:100%;}
+	.banner-text{top:20%;}
+}
+
+@media only screen and (max-width: 600px){
+    .banner-text{left:10%;width:80%;}
+    /* page book lessons start */
+	.page-book-lessons .view-book-lessons .item-list ul li{width:45%;}	
+	/* page book lessons end*/	
+	.table-responsive table{max-width:700px; width:700px;}
+	.node-type-book-lessons .commerce-product-field-field-image-logo .field-type-image{width:45%;}
+	
+	/* page-career-apply-job  css start*/
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-sex{margin-left:15px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob #edit-dob .form-item{margin-right:15px;}
+	.page-career-apply-job #ajax_form_multistep_form input#edit-user-profile-image-upload.form-control{width:65%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-item-step-2.form-type-textfield{width:100%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-type-textfield{width:48%;margin-left:0;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-type-textfield.form-item-bus-stop{margin-left:0; float:right;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.second .form-item-contact-adrs{width:60%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.second .form-item-state-residence{width:36.5%}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.third .form-item{width:31%; margin-right:15px;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.fourth .form-item{width:35%;}
+	/* page-career-apply-job  css end*/
+	
+	/* page-node-add-teacher-application-form csss start*/
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #tchr-personel-info #edit-field-teacher-name, .page-node-add-teacher-application-form .node-teacher_application_form-form #tchr-personel-info #edit-field-teacher-date-of-birth{width:100%;padding-right:0;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #tchr-personel-info #edit-field-teacher-sex{width:100%;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form{padding:0px 10px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3{padding:0;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-5 .field-type-text,.page-node-add-teacher-application-form .node-teacher_application_form-form .field-group-div #edit-field-teacher-contact-address,.page-node-add-teacher-application-form .node-teacher_application_form-form .field-group-div #edit-field-teacher-mobile,.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-5 #edit-field-teacher-bus-stop{width:100%;padding:0;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields{margin-bottom:0;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #edit-actions button{min-width:115px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields .field-type-list-text, .page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields .field-name-field-teacher-id-number{width:100%;padding:0;margin-bottom:20px}
+	/* page-node-add-teacher-application-form csss end*/
+	
+	/* service page form css */
+		.page-node-add-service-feedback-information h1.page-header{font-size:24px;line-height:28px;}
+	/* service page form css */
+	
+	/* test pages css start */
+	.test-table-wrap h3 { font: 20px/24px "TrebuchetMS";}
+	.node-type-page h1.page-header{font-size:24px;line-height:28px;}
+     /* test pages css start */
+	 
+	/*  teacher calender */
+	 .view-teachers-training-calendar .views-row{width:100%;min-height:100%;padding:15px;}
+	 .view-teachers-training-calendar .views-row:nth-child(2n){float:left;}
+	 .view-teachers-training-calendar .calender-call span{ font-size: 26px;
+    line-height: 38px;}
+	.view-teachers-training-calendar .calender-call .calndr-contact span{font-size: 20px;
+    line-height: 30px;}
+	.view-teachers-training-calendar .calender-call .calndr-contact a{font-size: 17px;
+    line-height: 30px;}
+	/*  teacher calender */
+	#views-exposed-form-store-page #edit-type-1-wrapper{width:100%;padding:0;}
+	#views-exposed-form-store-page #edit-combine-wrapper{width:100%;margin-top:10px;}
+	#views-exposed-form-store-page .views-submit-button{width:100%;}
+	#views-exposed-form-store-page .views-submit-button .btn{font-size:16px;line-height:20px;}
+	.node-type-hire-teacher article.node-hire-teacher .group-fields-group{width:100%;padding:0;}
+	.node-type-hire-teacher article.node-hire-teacher .field-name-field-hire-teacher-upload-logo{width:100%;padding:0;text-align:center;margin-bottom:30px;}
+	.node-type-hire-teacher article.node-hire-teacher .field-name-field-hire-teacher-upload-logo .img-responsive{display:inline-block;}
+	.videos .view-content tr{width:100%;}
+	.node-gift_cards-form .gift-card-Image-group{width:100%;float:left;}
+	.node-gift_cards-form .gift-card-Image-group .form-wrapper.form-group img{width:100%;}
+	#edit-field-gift-card-balance a{line-height:24px;}
+	.gift-card-Image-group #edit-field-gift-card-amount-label h3{font-size:20px;}
+	.page-node-add-testimonial #edit-field-client-image .input-group .form-control{width:100%;}
+	.page-node-add-testimonial #edit-field-client-image .input-group .input-group-btn {margin: 10px 0; text-align: center;width: 100%;}
+	.page-node-add-testimonial #edit-field-client-image .input-group .input-group-btn button{border-radius:4px;}
+	.store-fields .view-filters{width:100%;}
+	.page-store .store-fields .view-content{width:100%;}
+	.store-fields .view-header{text-align:center;}
+	.sell-on-dl{float:none;display:inline-block;}
+	#views-exposed-form-store-page #edit-combine-wrapper{margin-top:0;}
+	.tb-megamenu .tb-block .block-inner ul li{width:100%;}
+	.tb-megamenu .tb-block .block-inner ul.services-block li{width:100%;}
+	.search-screen .subject-select{width:100%;padding:0;}
+	.search-screen .search_button { text-align: center; width: 100%;margin-top: 10px;}
+	.search-screen .search_button .button { display: inline-block; float: none;width: auto;}
+}
+
+
+@media only screen and (max-width: 480px){
+	.page-forum .page-header{font-size: 26px;}
+    .node-type-book-lessons .commerce-product-field-field-image-logo .field-type-image{width:70%;}	
+
+	/* page-career-apply-job  css start*/
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob{width:100%; margin-top: 10px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob #edit-dob .form-item{width:31%;margin-right:10px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-dob #edit-dob .form-item-dob-year{margin-right:0;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-step-1{width:60%;}
+	.page-career-apply-job #ajax_form_multistep_form .box-name-info .form-item-sex{width:34%;}
+	.page-career-apply-job #ajax_form_multistep_form #edit-user-profile-image-ajax-wrapper{width:100%; margin-top:20px;}
+	.page-career-apply-job #ajax_form_multistep_form #teacher-img{width:auto;}
+	.page-career-apply-job #ajax_form_multistep_form #edit-user-profile-image-upload span.input-group-btn{width:25%; float:right;}
+	.page-career-apply-job #ajax_form_multistep_form form #edit-buttons--2 .btn-default{padding: 8px 35px;}
+	.page-career-apply-job #ajax_form_multistep_form form #edit-buttons--2 #edit-back{float:left;}
+	/* page-career-apply-job  css end*/
+
+	/* page-node-add-teacher-application-form csss start*/
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3 .form-item-field-teacher-state-of-origin-und-0-tid .select-wrapper{width:100%;padding:0;margin-bottom:10px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #stp-grp3 #edit-field-teacher-home-town{width:100%;}
+	.page-node-add-teacher-application-form .main-container h1{font-size:22px;line-height:26px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-7 .field-type-taxonomy-term-reference .select-wrapper{width:100%;padding:0;margin-bottom:15px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .field-group-div #edit-field-teacher-contact-address,.page-node-add-teacher-application-form .node-teacher_application_form-form .field-group-div #edit-field-teacher-mobile{margin-bottom:30px;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form .required-fields.group-7 .field-type-taxonomy-term-reference{margin-bottom:20px;}
+	/* page-node-add-teacher-application-form csss end*/
+
+    .What-we-do h2{font-size:24px;line-height:30px;}
+	.What-we-do .lessons-wrap h3{font-size:18px;line-height:24px;}
+    /* service page form css */
+	.page-node-add-service-feedback-information .node-service_feedback_information-form .group-name-class-group .form-wrapper.form-group{width:100%;padding-right:0px;}
+	.page-node-add-service-feedback-information  h1.page-header{font-size:20px;line-height:26px;}
+	/* service page form css */
+	
+	
+	
+	
+}
+
+@media only screen and (max-width: 479px){
+	.page-header { font-size: 28px; margin: 20px 0;}
+	.left_content ul li:first-child,.left_content ul li a{font-size:11px;}
+	.left_content ul li { margin-left:10px !important;}
+	.top_menu .right_content{padding: 0 12px;}
+	.right_content ul li:first-child{width:41%;}
+	.right_content ul li{width:31%;}
+	.right_content ul li:last-child{width:24%;}
+	.teacher_staff{width: 100%;margin-left: 0px;margin-top: 15px;}
+	.join_schools ul li.advertise .school_info a{font-size: 12px;padding: 0 6px;}
+	.testimonial_image{width: 100%;text-align: center;margin-right: 0px;margin-top: 15px;}
+	.testimonial_text,.connect_us,.newsletter{width: 100%;}
+	footer .nav > li{width: 50%;}
+	.newsletter{padding-left: 10px;}
+	#newsletter-subscribe-form{margin-top: 20px;}
+    .banner-text{left:5%;width:90%;}
+	.banner-text h1{font-size: 22px;line-height:28px}
+	.banner-text p{line-height: 24px;}
+	#page-header{width: 100%;}
+	.newsletter .form-group{width: 66%;}
+	.testimonial_text p{text-align: center;}
+    #newsletter-error{width: 97%;}
+	.right_section ul li{width: 48%;}
+	.about_us h4{font-size: 18px;}
+	.teachers_innovative .right_section{margin-top: 12px;}
+	#user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-facebook-hybridauth-32::before, #user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-twitter-hybridauth-32::before, #user-login .hybridauth-widget-wrapper ul.hybridauth-widget li a .hybridauth-google-hybridauth-32::before{width: 80%;}
+	.inner_blog{padding: 25px 15px 28px;}
+	.inner_blog h3{font-size: 16px;}
+	.blog .main_wrapper{margin-bottom: 20px;}
+	.faq ul.quicktabs-tabs.quicktabs-style-garland li a:link, .faq ul.quicktabs-tabs.quicktabs-style-garland li a:visited{  padding: 8px 10px;}
+	.faq .ui-state-default a{font-size: 14px;}
+	
+	/* page book lessons start */
+	.page-book-lessons .view-book-lessons .item-list ul li{width:100%;}
+	.right_content ul li a{width:100%;font-size: 11px;line-height:30px;}
+	/* page book lessons end*/
+	
+	
+	/* page-career-apply-job  css start*/
+	.page-career-apply-job #ajax_form_multistep_form #edit-buttons{ margin: 0px 0 30px;}
+	.page-career-apply-job #ajax_form_multistep_form .box-adres-info .form-item{width:100%; margin:0 0 15px;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-type-textfield{width:100%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.first .form-type-textfield.form-item-bus-stop{float:left;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.second .form-item-contact-adrs{width:100%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.second .form-item-state-residence{width:100%;}
+	.page-career-apply-job #ajax_form_multistep_form form .step2-box.third .form-item,.page-career-apply-job #ajax_form_multistep_form form .step2-box.fourth .form-item{width:100%;margin-right:0;}
+	/* page-career-apply-job  css end*/
+
+	/* submit page form css */
+	.node-type-webform .webform-client-form-115 .form-item.webform-component--name, .node-type-webform .webform-client-form-115 .form-item.webform-component--e-mail, .node-type-webform .webform-client-form-115 .form-item.webform-component-phone{width:100%;padding:0px;}
+	.node-type-webform .webform-client-form-115 .form-item.webform-component--e-mail{margin:0px 0px 25px;padding-right:0;}
+	.node-type-webform .webform-client-form-115 .form-item.webform-component-select select{width:100%;}
+	/* submit page form css */
+
+	/* service page form css */
+	.page-node-add-service-feedback-information .node-service_feedback_information-form .group-student-details.field-group-div,.page-node-add-service-feedback-information .node-service_feedback_information-form #edit-field-srvc-feedback-upload-photo{width:100%;}
+	/* service page form css */
+	
+	/* hire page css start */
+	
+	.page-node-add-hire-teacher h1{font-size:25px;line-height:35px;}
+	.group-subject-teachers-group h3 > span{font-size:17px;}
+	/* hire page css start */
+	
+	
+	/* find a teachr page */
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_classes_and_subjects_hidde_tid, .page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_teacher_state_of_origin_tid{width:100%;padding:0;margin-bottom:15px;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .control-label{right:-10px;}
+	.page-find-a-teacher #views-exposed-form-filter-teacher-page .views-widget-filter-field_classes_and_subjects_hidde_tid .form-item.form-group{padding:0;}
+	/* find a teachr page */
+	
+	/* teachr calndr */
+	.view-teachers-training-calendar .calender-call .calndr-contact span{width:100%;margin:0;}
+	/* teachr calndr */
+
+	/* Store page css starts here */
+	.store-fields .views-row{min-height: auto;width: 100%;padding: 10px;margin-left: 0px;}
+	.store-fields .views-row:nth-child(3n+1){margin-left: 0px;}
+	.item-desc button[type="submit"].form-submit{margin-right: 5px;}
+	#edit-type-1-wrapper{width: 100%;padding: 0px 0px 10px;}
+	#edit-combine-wrapper{width: 225px;}
+	.train-dolessons h3{font-size: 22px;}
+	.page-teachers-training-calendar .page-header{font-size: 22px;}
+	.training-calendar a{margin-top: 10px;}
+	.training-calendar a:first-child{margin-top: 0px;}
+	.footer-news{max-width:100%;margin-top:15px;width:100%;}
+	.social-links{width:100%;}
+	.node-type-hire-teacher article.node-hire-teacher .group-fields-group .field-items{width:100%;padding:0;}
+	.node-type-hire-teacher article.node-hire-teacher .group-fields-group .field-label{width:100%;}
+	.page-node-add-teacher-application-form .node-teacher_application_form-form #edit-actions button{font-size:16px;}
+	.node-type-webform .webform-client-form-115 .form-item{width:100%;padding:0;}
+	.node-type-webform .webform-client-form-115 .form-item.webform-component--message{width:100%;}
+	.node-type-webform .webform-client-form-115 .form-item.webform-component--priority{width:100%;}
+	.tb-megamenu .tb-block .block-inner ul.services-block{width:100%}
+	.advert-menu{width:100%;text-align:center;}
+	.search-screen .subject-select select{width:100%;margin:0 0 10px;}
+}
+
+
+
+

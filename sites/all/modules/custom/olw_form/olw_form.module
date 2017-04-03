@@ -1,0 +1,75 @@
+<?php
+/**
+ * Implements hook_init().
+ */
+function olw_form_init() {
+  //drupal_add_js(drupal_get_path("module","olw_form").'/olw_form.js');
+  //drupal_add_css(drupal_get_path("module","olw_form").'/olw_form.css');
+}
+/**
+ * Implementation of hook_form_alter()
+ */
+function olw_form_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  global $base_path;
+    if($form_id == 'user_register_form'){
+      $path = current_path();
+      if($path == 'teacher/register'){
+          $form['actions']['submit']['#value']=t('Submit');
+          }
+      elseif($path == 'student/register'){
+          
+          $form['actions']['submit']['#value']=t('Sign-up');
+          $form['captcha']['#weight']='5';
+      }
+        $form['account']['mail']['#title']=t('Email'); 
+    }
+    if($form_id == 'user_login'){
+        $form['name']['#title'] = t("Email Address");
+        $form['subs_markup']=array(
+        '#markup' => "<p><a href='".$base_path."user/password'>Forget password</a></p>",'#weight'=>'5');
+        $form['actions']['submit']['#value'] = t("Submit"); 
+
+        $form['actions']['sub_markup']=array(
+        '#markup' => "<p>New to do lesson ? <a href='".$base_path."student/register'>sign up now</a></p>",'#weight'=>'5');
+        $form['name']['#prefix'] = '<div id="user_login_form">';
+        $form['actions']['#suffix'] = '</div>';
+  }
+ }
+/**
+ * Implementation of hook_menu_local_tasks_alter()
+ */
+function olw_form_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+    global $user;
+    $uid = $user->uid;
+    $path = current_path();
+   if ( !($uid) && ($path == 'user')) {
+    
+    unset($data['tabs'][0]['output'][0]);
+    $data['tabs'][0]['output'][1]['#link']['title'] = 'User Login';
+    unset($data['tabs'][0]['output'][2]);
+    
+   }
+   if ( !($uid) && ($path == 'user/login')) {
+    
+    unset($data['tabs'][0]['output'][0]);
+    $data['tabs'][0]['output'][1]['#link']['title'] = 'User Login';
+    unset($data['tabs'][0]['output'][2]);
+    
+   }
+    if ( !($uid) && ($path == 'student/register')) {
+    
+    unset($data['tabs'][0]['output'][0]);
+    unset($data['tabs'][0]['output'][1]);
+    unset($data['tabs'][0]['output'][2]);
+    
+   }
+      if ( !($uid) && ($path == 'teacher/register')) {
+    
+    unset($data['tabs'][0]['output'][0]);
+    unset($data['tabs'][0]['output'][1]);
+    unset($data['tabs'][0]['output'][2]);
+    
+   }
+}
+

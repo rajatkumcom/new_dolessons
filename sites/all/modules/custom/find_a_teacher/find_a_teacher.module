@@ -1,0 +1,519 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function find_a_teacher_menu() {
+	$items['find-teacher-continue'] = array(
+			'title' => 'Find a Teacher',
+			'page callback' => 'find_teacher_continue',
+			'access callback' => TRUE,
+			'type' => MENU_CALLBACK,
+	);
+	
+	$items['book-by-admin-apply'] = array(
+			'page callback' => 'book_by_admin_apply',
+			'access callback' => TRUE,
+			'type' => MENU_CALLBACK,
+	);
+
+  return $items;
+}
+
+function find_teacher_continue() {
+	global $user;
+	$student_uid = $user->uid;
+
+	$teacher_uid = $_GET['uid'];
+	$_SESSION['find-teacher']['teacher_uid'] = $teacher_uid;
+
+
+	if( array_key_exists( 'tid', $_SESSION['find-teacher'] ) ) {
+
+		$tid = 0;
+		$tid = $_SESSION['find-teacher']['tid'];
+
+		$results = db_select('field_data_field_product_class_and_subj', 'pcs')
+		->fields('pcs')
+		->condition('entity_type', 'commerce_product', '=' )
+		->condition('bundle', 'product', '=' )
+		->condition('deleted', 0, '=' )
+		->condition('field_product_class_and_subj_tid', $tid, '=' )
+		->execute()
+		->fetchAssoc();
+
+		if( $results  ) {
+			$product_id = $results['entity_id'];
+			$_SESSION['find-teacher']['product_id'] = $product_id;
+				
+			$testorder_id =  db_query( "SELECT cli.order_id
+					FROM commerce_payment_transaction cpt
+					JOIN commerce_line_item cli ON cpt.order_id = cli.order_id
+					JOIN field_data_commerce_product fdcp ON cli.line_item_id = fdcp.entity_id
+					WHERE cpt.status = 'success' and cli.type = 'product' and cpt.uid = $student_uid and fdcp.commerce_product_product_id = $product_id ORDER BY cli.order_id DESC" )->fetchAssoc();
+
+			if( $testorder_id ) {
+				$order_id = db_select('assign_teacher', 'at')
+				->fields('at')
+				->condition('order_id', $testorder_id['order_id'], '=' )
+				->execute()
+				->fetchAssoc();
+				//
+				if( false == $order_id ) {
+						
+					$blid = db_insert('assign_teacher')
+					->fields(array(
+							'uid_teacher' => $teacher_uid,
+							'uid_student' => $student_uid,
+							'product_id' => $product_id,
+							'assign_date' => REQUEST_TIME,
+							'order_id' => $testorder_id['order_id'],
+					))
+					->execute();
+					drupal_set_message( 'You have successfully booked teacher.' );
+
+					$results = db_select('users', 'u')
+					->fields('u')
+					->condition( 'uid', $teacher_uid )
+					->execute()
+					->fetchAssoc();
+						
+					if( $results ) {
+						$student_profile = profile2_by_uid_load($student_uid, 'student_profile');
+
+						$student_first_name = isset($student_profile->field_student_first_name['und'][0]['value']) ? $student_profile->field_student_first_name['und'][0]['value'] : 'empty';
+						$student_last_name = isset($student_profile->field_student_last_name['und'][0]['value']) ? $student_profile->field_student_last_name['und'][0]['value'] : 'empty';
+
+						$teacher_profile = profile2_by_uid_load($teacher_uid, 'teacher_profile');
+
+						$teacher_first_name = isset($teacher_profile->field_teacher_first_name['und'][0]['value']) ? $teacher_profile->field_teacher_first_name['und'][0]['value'] : 'empty';
+						$teacher_last_name = isset($teacher_profile->field_teacher_last_name['und'][0]['value']) ? $teacher_profile->field_teacher_last_name['und'][0]['value'] : 'empty';
+
+
+
+						$student_address = '';
+						$student_address .= 'SN: ';
+						$student_address .= isset($student_profile->field_your_street_number['und'][0]['value']) ? $student_profile->field_your_street_number['und'][0]['value'] : 'empty';
+						$student_address .= ', Street Name: ';
+						$student_address .= isset($student_profile->field_your_street_name['und'][0]['value']) ? $student_profile->field_your_street_name['und'][0]['value'] : 'empty';
+						$student_address .= ', Bus Stop: ';
+						$student_address .= isset($student_profile->field_street_bus_stop['und'][0]['value']) ? $student_profile->field_street_bus_stop['und'][0]['value'] : 'empty';
+
+						$student_state_tid = isset($student_profile->field_student_states['und'][0]['tid']) ? $student_profile->field_student_states['und'][0]['tid'] : 0;
+
+						$term = taxonomy_term_load($student_state_tid);
+						$name = $term->name;
+
+						$student_address .= ', ';
+						$student_address .= $name;
+
+						$arr_teacher_node = db_select('node', 'n')
+						->fields('n')
+						->condition('status', 0,'>')
+						->condition('type', 'teacher_application_form','=')
+						->condition('uid', $teacher_uid,'=')
+						->execute()
+						->fetchAssoc();
+
+						$teacher_node = node_load( $arr_teacher_node['nid'] );
+
+						$teacher_address = '';
+						$teacher_address .= $teacher_node->field_teacher_res_address_num['und'][0]['value'];
+						$teacher_address .= ', Street Name: ';
+						$teacher_address .= $teacher_node->field_teacher_street['und'][0]['value'];
+						$teacher_address .= ', Bus Stop: ';
+						$teacher_address .= $teacher_node->field_teacher_bus_stop['und'][0]['value'];
+
+						$teacher_state_tid = $teacher_node->field_teacher_state_of_res['und'][0]['tid'];
+
+						$term = taxonomy_term_load($teacher_state_tid);
+						$name = $term->name;
+
+						$teacher_address .= ', ';
+						$teacher_address .= $name;
+
+							
+						$teacher_mail = $results['mail'];
+						$site_email = variable_get('site_mail', '');
+						$student_name = $user->name;
+							
+						$to      = $teacher_mail;
+						$subject = 'DoLessons Book';
+						$message = "Dear $teacher_first_name $teacher_last_name
+						You are booked by $student_first_name $student_last_name";
+						$headers = "From: $site_email" . "\r\n" .
+								"Reply-To: $site_email" . "\r\n" .
+								'X-Mailer: PHP/' . phpversion();
+							
+						mail($to, $subject, $message, $headers);
+
+						$arr_student = db_select('twilio_otp', 't')
+						->fields('t')
+						->condition('uid', $student_uid,'=')
+						->execute()
+						->fetchAssoc();
+
+						if( $arr_student ) {
+							$student_mobile_no = $arr_student['mobile_number'];
+							$student_country_code =$arr_student['country_code'];
+						} else {
+							drupal_set_message("Mobile number doesn't exist", 'warning');
+							drupal_goto('find-a-teacher');
+						}
+
+						$arr_teacher = db_select('twilio_otp', 't')
+						->fields('t')
+						->condition('uid', $teacher_uid,'=')
+						->execute()
+						->fetchAssoc();
+
+						if( $arr_teacher ) {
+							$teachers_mobile_no = $arr_teacher['mobile_number'];
+							$teachers_country_code =$arr_teacher['country_code'];
+						} else {
+							drupal_set_message("Mobile number doesn't exist", 'warning');
+							drupal_goto('find-a-teacher');
+						}
+
+						//Student
+						$message = "SMS FROM DoLessons Teacher Assigned: $teacher_first_name $teacher_last_name, Teacher Mobile No: $teachers_country_code$teachers_mobile_no Address: $teacher_address";
+						$sent = twilio_send($student_mobile_no,$message,$student_country_code);
+
+						//Teacher
+						$message = "SMS FROM DoLessons Student Name: $student_first_name $student_last_name, Student Mobile No: $student_country_code$student_mobile_no Address: $student_address";
+						$sent = twilio_send($teachers_mobile_no,$message,$teachers_country_code);
+					}
+						
+					drupal_goto('find-a-teacher');
+				} else {
+					find_teacher_go_to_checkout( $product_id );
+				}
+			}
+			find_teacher_go_to_checkout( $product_id );
+		}
+
+	}
+	drupal_goto('find-a-teacher');
+}
+
+function find_teacher_go_to_checkout( $product_id = 0 ) {
+	global $user;
+	$uid = $user->uid;
+
+	$order = commerce_cart_order_load($uid);
+
+	if( $order != FALSE ) {
+		commerce_cart_order_empty( $order );
+	}
+
+	$line_item = commerce_product_line_item_new(commerce_product_load($product_id));
+	commerce_cart_product_add($uid,$line_item);
+	drupal_goto('checkout');
+}
+
+
+function book_by_admin_apply() {
+	$id = $_GET['id'];
+	global $user;
+	$teacher_uid = $user->uid;
+
+	$job_node_object = node_load($id);
+	$job_tid = $job_node_object->field_student_classes_and_subj['und'][0]['tid'];
+
+	$arr_teacher = db_select('node', 'n')
+	->fields('n')
+	->condition('uid', $teacher_uid,'=')
+	->condition('status', 0,'>')
+	->condition('type', 'teacher_application_form')
+	->execute()
+	->fetchAssoc();
+
+	$teacher_node_object = node_load($arr_teacher['nid']);
+
+	$arr_teacher_tids = $teacher_node_object->field_classes_and_subjects_hidde['und'];
+
+	$teacher_tids = array();
+	foreach( $arr_teacher_tids as $tid ) {
+		$teacher_tids[] = $tid['tid'];
+	}
+
+	if( !in_array( $job_tid, $teacher_tids ) ) {
+		drupal_set_message("You are not certified to teach this subject.", 'warning');
+		drupal_goto('trending-jobs');
+	}
+
+	$teacher_uid = $user->uid;
+	$teacher_profile = profile2_by_uid_load($teacher_uid, 'teacher_profile');
+
+	$teacher_first_name = isset($teacher_profile->field_teacher_first_name['und'][0]['value']) ? $teacher_profile->field_teacher_first_name['und'][0]['value'] : 'empty';
+	$teacher_last_name = isset($teacher_profile->field_teacher_last_name['und'][0]['value']) ? $teacher_profile->field_teacher_last_name['und'][0]['value'] : 'empty';
+
+	$result = db_select('node', 'n')
+	->fields('n')
+	->condition('nid', $id,'=')
+	->condition('status', 0,'>')
+	->condition('type', 'student_availability')
+	->execute()
+	->fetchAssoc();
+	$student_uid = NULL;
+	if( $result ) {
+		$student_uid = $result['uid'];
+		$arr_student = db_select('twilio_otp', 't')
+		->fields('t')
+		->condition('uid', $student_uid,'=')
+		->execute()
+		->fetchAssoc();
+		$student_mobile_no = $arr_student['mobile_number'];
+		$student_country_code = $arr_student['country_code'];
+	} else {
+		drupal_set_message("Node doesn't exist", 'warning');
+	}
+
+	$student_profile = profile2_by_uid_load($student_uid, 'student_profile');
+
+	$student_first_name = isset($student_profile->field_student_first_name['und'][0]['value']) ? $student_profile->field_student_first_name['und'][0]['value'] : 'empty';
+	$student_last_name = isset($student_profile->field_student_last_name['und'][0]['value']) ? $student_profile->field_student_last_name['und'][0]['value'] : 'empty';
+
+	$arr_teacher = db_select('twilio_otp', 't')
+	->fields('t')
+	->condition('uid', $teacher_uid,'=')
+	->execute()
+	->fetchAssoc();
+
+	if( $arr_teacher ) {
+		$teachers_mobile_no = $arr_teacher['mobile_number'];
+		$teachers_country_code =$arr_teacher['country_code'];
+	} else {
+		drupal_set_message("Mobile number doesn't exist", 'warning');
+		drupal_goto('trending-jobs');
+	}
+
+	$student_address = '';
+	$student_address .= 'SN: ';
+	$student_address .= isset($student_profile->field_your_street_number['und'][0]['value']) ? $student_profile->field_your_street_number['und'][0]['value'] : 'empty';
+	$student_address .= ', Street Name: ';
+	$student_address .= isset($student_profile->field_your_street_name['und'][0]['value']) ? $student_profile->field_your_street_name['und'][0]['value'] : 'empty';
+	$student_address .= ', Bus Stop: ';
+	$student_address .= isset($student_profile->field_street_bus_stop['und'][0]['value']) ? $student_profile->field_street_bus_stop['und'][0]['value'] : 'empty';
+
+	$student_state_tid = isset($student_profile->field_student_states['und'][0]['tid']) ? $student_profile->field_student_states['und'][0]['tid'] : 0;
+
+	$term = taxonomy_term_load($student_state_tid);
+	$name = $term->name;
+
+	$student_address .= ', ';
+	$student_address .= $name;
+
+	$arr_teacher_node = db_select('node', 'n')
+	->fields('n')
+	->condition('status', 0,'>')
+	->condition('type', 'teacher_application_form','=')
+	->condition('uid', $teacher_uid,'=')
+	->execute()
+	->fetchAssoc();
+
+	$teacher_node = node_load( $arr_teacher_node['nid'] );
+
+	$teacher_address = '';
+	$teacher_address .= $teacher_node->field_teacher_res_address_num['und'][0]['value'];
+	$teacher_address .= ', SN: ';
+	$teacher_address .= $teacher_node->field_teacher_street['und'][0]['value'];
+	$teacher_address .= ', Bus Stop: ';
+	$teacher_address .= $teacher_node->field_teacher_bus_stop['und'][0]['value'];
+
+	$teacher_state_tid = $teacher_node->field_teacher_state_of_res['und'][0]['tid'];
+
+	$term = taxonomy_term_load($teacher_state_tid);
+	$name = $term->name;
+
+	$teacher_address .= ', ';
+	$teacher_address .= $name;
+
+	//Student
+	$message = "SMS FROM DoLessons Teacher Assigned: $teacher_first_name $teacher_last_name, Teacher Mob No: $teachers_country_code$teachers_mobile_no Address: $teacher_address";
+	$sent = twilio_send($student_mobile_no,$message,$student_country_code);
+
+	//Teacher
+	$message = "SMS FROM DoLessons Student Name: $student_first_name $student_last_name, Student Mob No: $student_country_code$student_mobile_no Address: $student_address";
+	$sent = twilio_send($teachers_mobile_no,$message,$teachers_country_code);
+
+	$num_updated = db_update('field_data_field_status')
+	->fields(array(
+			'field_status_value' => 0,
+	))
+	->condition('entity_id', $id)
+	->execute();
+
+	drupal_set_message("You have successfully booked job.");
+	drupal_goto('trending-jobs');
+}
+
+/*
+ * Implements hook_form_alter()
+ */
+function common_form_views_exposed_form_alter(&$form, &$form_state){
+	if( array_key_exists( '#id', $form ) ) {
+		if($form['#id'] == 'views-exposed-form-filter-teacher-page' ){
+			$form_s = ( array ) $form_state;
+			$results = search( $form_s, 'field_classes_and_subjects_hidde_tid' );
+			$_SESSION['find-teacher']['tid'] = $results[0]['field_classes_and_subjects_hidde_tid'];
+		}
+	}
+}
+
+function search($array, $key )
+{
+	$results = array();
+
+	if (is_array($array)) {
+		if (isset($array[$key]) ) {
+			$results[] = $array;
+		}
+
+		foreach ($array as $subarray) {
+			$results = array_merge($results, search($subarray, $key ));
+		}
+	}
+
+	return $results;
+}
+
+function find_a_teacher_form_commerce_checkout_form_complete_alter( &$form, &$form_state ) {
+	
+	//for Find Teacher
+	if( array_key_exists( 'find-teacher', $_SESSION ) ) {
+		global $user;
+		$student_uid = $user->uid;
+	
+		$teacher_uid = $_SESSION['find-teacher']['teacher_uid'];
+	
+		$results = db_select('users', 'u')
+		->fields('u')
+		->condition( 'uid', $teacher_uid )
+		->execute()
+		->fetchAssoc();
+	
+		if( $results ) {
+			$teacher_mail = $results['mail'];
+			$teacher_name = $results['name'];
+			$site_email = variable_get('site_mail', '');
+				
+			//Assign teacher
+			$product_id = $_SESSION['find-teacher']['product_id'];
+				
+			$action = $form['#action'];
+			$arr_order_id = explode('/', $action);
+			$order_id = (int)$arr_order_id[3];
+				
+			$nid = db_insert('assign_teacher')
+			->fields(array(
+					'uid_teacher' => $teacher_uid,
+					'uid_student' => $student_uid,
+					'product_id' => $product_id,
+					'assign_date' => REQUEST_TIME,
+					'order_id' => $order_id,
+			))
+			->execute();
+				
+			$student_profile = profile2_by_uid_load($student_uid, 'student_profile');
+				
+			$student_first_name = isset($student_profile->field_student_first_name['und'][0]['value']) ? $student_profile->field_student_first_name['und'][0]['value'] : 'empty';
+			$student_last_name = isset($student_profile->field_student_last_name['und'][0]['value']) ? $student_profile->field_student_last_name['und'][0]['value'] : 'empty';
+				
+			$teacher_profile = profile2_by_uid_load($teacher_uid, 'teacher_profile');
+				
+			$teacher_first_name = isset($teacher_profile->field_teacher_first_name['und'][0]['value']) ? $teacher_profile->field_teacher_first_name['und'][0]['value'] : 'empty';
+			$teacher_last_name = isset($teacher_profile->field_teacher_last_name['und'][0]['value']) ? $teacher_profile->field_teacher_last_name['und'][0]['value'] : 'empty';
+				
+			$arr_student = db_select('twilio_otp', 't')
+			->fields('t')
+			->condition('uid', $student_uid,'=')
+			->execute()
+			->fetchAssoc();
+				
+			if( $arr_student ) {
+				$student_mobile_no = $arr_student['mobile_number'];
+				$student_country_code =$arr_student['country_code'];
+			} else {
+				drupal_set_message("Mobile number doesn't exist", 'warning');
+			}
+				
+			$student_address = '';
+			$student_address .= 'SN: ';
+			$student_address .= isset($student_profile->field_your_street_number['und'][0]['value']) ? $student_profile->field_your_street_number['und'][0]['value'] : 'empty';
+			$student_address .= ', Street Name: ';
+			$student_address .= isset($student_profile->field_your_street_name['und'][0]['value']) ? $student_profile->field_your_street_name['und'][0]['value'] : 'empty';
+			$student_address .= ', Bus Stop: ';
+			$student_address .= isset($student_profile->field_street_bus_stop['und'][0]['value']) ? $student_profile->field_street_bus_stop['und'][0]['value'] : 'empty';
+				
+			$student_state_tid = isset($student_profile->field_student_states['und'][0]['tid']) ? $student_profile->field_student_states['und'][0]['tid'] : 0;
+				
+			$term = taxonomy_term_load($student_state_tid);
+			$name = $term->name;
+				
+			$student_address .= ', ';
+			$student_address .= $name;
+				
+			$arr_teacher_node = db_select('node', 'n')
+			->fields('n')
+			->condition('status', 0,'>')
+			->condition('type', 'teacher_application_form','=')
+			->condition('uid', $teacher_uid,'=')
+			->execute()
+			->fetchAssoc();
+				
+			$teacher_node = node_load( $arr_teacher_node['nid'] );
+				
+			$teacher_address = '';
+			$teacher_address .= $teacher_node->field_teacher_res_address_num['und'][0]['value'];
+			$teacher_address .= ', SN: ';
+			$teacher_address .= $teacher_node->field_teacher_street['und'][0]['value'];
+			$teacher_address .= ', Bus Stop: ';
+			$teacher_address .= $teacher_node->field_teacher_bus_stop['und'][0]['value'];
+				
+			$teacher_state_tid = $teacher_node->field_teacher_state_of_res['und'][0]['tid'];
+				
+			$term = taxonomy_term_load($teacher_state_tid);
+			$name = $term->name;
+				
+			$teacher_address .= ', ';
+			$teacher_address .= $name;
+				
+			$arr_teacher = db_select('twilio_otp', 't')
+			->fields('t')
+			->condition('uid', $teacher_uid,'=')
+			->execute()
+			->fetchAssoc();
+				
+			if( $arr_teacher ) {
+				$teachers_mobile_no = $arr_teacher['mobile_number'];
+				$teachers_country_code =$arr_teacher['country_code'];
+			} else {
+				drupal_set_message("Mobile number doesn't exist", 'warning');
+			}
+				
+			//Student
+			$message = "SMS FROM DoLessons Teacher Assigned: $teacher_first_name $teacher_last_name, Teacher Mobile No: $teachers_country_code$teachers_mobile_no Address: $teacher_address";
+			$sent = twilio_send($student_mobile_no,$message,$student_country_code);
+				
+			//Teacher
+			$message = "SMS FROM DoLessons Student Name: $student_first_name $student_last_name, Student Mobile No: $student_country_code$student_mobile_no Address: $student_address";
+			$sent = twilio_send($teachers_mobile_no,$message,$teachers_country_code);
+				
+			$to      = $teacher_mail;
+			$subject = 'DoLessons Book';
+			$message = "Dear $teacher_first_name $teacher_last_name
+			You are booked by $student_first_name $student_last_name";
+			$headers = "From: $site_email" . "\r\n" .
+					"Reply-To: $site_email" . "\r\n" .
+					'X-Mailer: PHP/' . phpversion();
+				
+			mail($to, $subject, $message, $headers);
+		}
+	
+		drupal_set_message( "Thanks for making payment.<br>
+							You have successfully booked teacher." );
+		unset( $_SESSION['find-teacher'] );
+	
+	}
+	
+}

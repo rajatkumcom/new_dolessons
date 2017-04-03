@@ -1,0 +1,144 @@
+<?php 
+/**
+ * Implements hook_menu()
+ * for Hire Teacher
+ */
+function dashboard_notifications_menu() {
+
+	$items['send-notifications-user'] = array(
+			'page callback' => 'send_notifications_user',
+			'access callback' => TRUE,
+			'type' => MENU_CALLBACK,
+	);
+	$items['notifications-close'] = array(
+			'page callback' => 'notifications_close',
+			'access callback' => TRUE,
+			'type' => MENU_CALLBACK,
+	);
+	return $items;
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function dashboard_notifications_block_info() {
+	$blocks = array();
+	$blocks['DASHBOARD_NOTIFICATIONS'] = array(
+			'info' => t('Dashboard Notifications'),
+	);
+
+	return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function dashboard_notifications_block_view($delta = '') {
+	$block = array ();
+	switch ($delta) {
+		case 'DASHBOARD_NOTIFICATIONS' :
+			$block ['subject'] = '';
+			$block ['content'] = _dashboard_notifications();
+			break;
+	}
+	return $block;
+}
+
+function _dashboard_notifications() {
+	
+	global $user;
+	global $base_url;
+	$target = current_path();
+	
+	$uid = $user->uid;
+	
+	$result = db_select('dashboard_notifications', 'dn')
+					->fields('dn')
+					->condition('uid', $uid,'=')
+					->condition('status', 1,'=')
+					->execute()
+					->fetchAll();
+	
+	$output = "";
+
+	if( $result ) {
+		 $output .= '<div class="notifications-wrapper">';
+		foreach( $result as $row ) {
+			$id = $row->id;
+			$message = $row->message;
+			$output .= "<div class='notification-alert'><p>$message</p><span><a href='$base_url/notifications-close?id=$id&target=$target'>&times;</a></span></div>";
+		}
+		$output .= '</div>';
+	}
+	
+	return $output;
+}
+
+function send_notifications_user() {
+	
+	$uid = isset( $_POST['id'] ) ? $_POST['id'] : FALSE;
+	$message = isset( $_POST['message'] ) ? $_POST['message'] : FALSE;
+
+	if( FALSE != $uid && FALSE != $message ) {
+		$result = db_select('users', 'u')
+					->fields('u')
+					->condition('uid', $uid,'=')
+					->execute()
+					->fetchAssoc();
+	
+		$user_mail = $result['mail'];
+		$user_name = $result['name'];
+	
+		$to      = $user_mail;
+		$subject = 'DoLessons Notification';
+	
+		$site_email = variable_get('site_mail', '');
+		$headers = "From: $site_email" . "\r\n" .
+				"Reply-To: $site_email" . "\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+	
+			mail($to, $subject, $message, $headers);
+		
+		$nid = db_insert('dashboard_notifications')
+					->fields(array(
+							'uid' => $uid,
+							'message' => $message,
+							'status' => 1,
+					))
+					->execute();
+	
+		$arr_mobile = db_select('twilio_otp', 'o')
+		->fields('o')
+		->condition('uid', $uid,'=')
+		->execute()
+		->fetchAssoc();
+	
+		if( $arr_mobile ) {
+			$mobile_no = $arr_mobile['mobile_number'];
+			$country_code = $arr_mobile['country_code'];
+	
+				$sent = twilio_send($mobile_no,$message,$country_code);
+		} else {
+			drupal_set_message("Mobile number doesn't exist", 'warning');
+		}
+		drupal_set_message("Notification Sent to $user_name");
+		//drupal_goto('send-notifications');
+	}
+	drupal_goto('send-notifications');
+}
+
+function notifications_close() {
+	
+	$id = $_GET['id'];
+	$target = $_GET['target'];
+	
+	$num_updated = db_update('dashboard_notifications')
+						->fields(array(
+								'status' => 0,
+						))
+						->condition('id', $id )
+						->execute();
+						
+	drupal_goto( $target );
+}

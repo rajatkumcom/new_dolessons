@@ -1,0 +1,95 @@
+<?php
+
+
+/**
+ * Implementation of hook_menu().
+ */
+function trending_teaching_job_menu() {
+  $items = array();
+
+  // A page to demonstrate theming form elements in a table.
+  $items['selected-trending-job'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'applied_trending_job',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+		
+		 
+
+ 
+/**
+ * Page Callback / Form Builder for the table form.
+ */
+ 
+function applied_trending_job(){
+	 global $user;
+	 $user_id = $user->uid;
+	 $subject_choice = $_GET['subject'][0];
+	 $school_id = $_GET['nid'][0];
+	 $node_load = node_load($school_id);
+	 $school_name = $node_load->title;
+	 
+	 
+	 
+	 $entity_type = 'node';
+     $bundle_name = 'hire_teacher';
+     $field_name = $subject_choice ;
+     $info = field_info_instance($entity_type, $field_name, $bundle_name);
+     $subject_label = $info['label'];
+     
+	 $query = db_insert('trending_teaching_job_application')
+    ->fields(array(
+    'uid_teacher' => $user_id,
+    'subject_key' => $subject_choice,
+    'subject_label' => $subject_label,
+    'school_id' => $school_id,
+    'school_label' => $school_name,
+    'application_date' => REQUEST_TIME,
+    
+  ))
+  ->execute();
+  
+  drupal_goto('node/add/teacher-apply-job-vacancies',array('query' => array('school_id' => $school_id,'subject' => $subject_label)));
+  
+}
+
+function trending_teaching_job_views_api(){
+	
+	return array(
+			'api' => 3,
+			'path' => drupal_get_path('module', 'trending_teaching_job') . '/views',
+	);
+}
+
+/**
+*
+* Implements hook_node_insert
+* 
+**/
+
+function trending_teaching_job_node_insert($node){
+	
+
+	
+	
+	if($node->type =='teacher_apply_job_vacancies' && $node->is_new) {
+		
+		$school_id = $_GET['school_id'];
+	    $subject   = $_GET['subject'];
+      
+      $node->field_teacher_apply_school_id[LANGUAGE_NONE][0]['value'] = $school_id ;
+      $node->field_teacher_apply_subject_name[LANGUAGE_NONE][0]['value'] = $subject; 
+      
+      field_attach_update('node', $node); // Do this instead
+ 
+
+        }
+      
+        drupal_set_message(t("Your profile is saved"), 'status');
+
+ 
+  }
+		

@@ -1,0 +1,325 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+ 
+function advertisement_menu() {
+  $items['advertisement'] = array(
+    'title' => 'Advertise on DoLessons',
+    'page callback' => 'advertisement_page',
+    'access callback' => TRUE,
+    
+  );
+  $items['approve-advertisement/%'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'approve_advertisement',
+    'access callback' => TRUE,
+  );
+  $items['approve-banner-image/%'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'approve_banner_image',
+    'access callback' => TRUE,
+  );
+  
+  $items['approve-sponsored-post/%'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'approve_sponsored_post',
+    'access callback' => TRUE,
+  );
+  
+  
+  
+  
+
+  return $items;
+}
+
+function advertisement_page(){
+	return '';
+}
+
+/**
+*
+* Implements hook_node_insert
+* 
+**/
+
+function advertisement_node_insert($node){
+	
+	global $user;
+	$uid = $user->uid;
+	if($node->type =='advertisement_profile' && $node->is_new) {
+		
+		//cost per impression
+  if($node->field_add_profile_billing_option[LANGUAGE_NONE][0]['value'] == "Cost Per Impression"){
+	     if($node->field_add_profile_cost_per_imp[LANGUAGE_NONE][0]['value'] == "100,000 Per Impression N 8"){
+		         $product = commerce_product_load(175);
+		  }
+	      elseif($node->field_add_profile_cost_per_imp[LANGUAGE_NONE][0]['value'] == "200,000 Per Impression N 7"){
+			     $product = commerce_product_load(176);
+		  }
+	      else{
+			     $product = commerce_product_load(177);
+		  }
+			  
+	  }
+	  //cost per day
+  
+   elseif($node->field_add_profile_billing_option[LANGUAGE_NONE][0]['value'] == "Cost Per Day" ){
+		  if($node->field_add_profile_cost_per_day[LANGUAGE_NONE][0]['value'] == "30 days N 16,100"){
+		         $product = commerce_product_load(180);
+		   }
+	      elseif($node->field_add_profile_cost_per_day[LANGUAGE_NONE][0]['value'] == "60 days N 17,500"){
+				 $product = commerce_product_load(179);
+		   }
+		  else{
+				 $product = commerce_product_load(178);
+		   }
+		  
+	  }
+	  //cost per week
+	  
+	else{
+		  if($node->field_add_profile_cost_per_week[LANGUAGE_NONE][0]['value'] == "Home Page N 350,000/wk"){
+			      $product = commerce_product_load(181);
+		   }
+		  elseif($node->field_add_profile_cost_per_week[LANGUAGE_NONE][0]['value'] == "Dashboard N 285,000/wk"){
+			      $product = commerce_product_load(182);
+		   }
+		  elseif($node->field_add_profile_cost_per_week[LANGUAGE_NONE][0]['value'] == "Blog Page N 270,000/wk"){
+			      $product = commerce_product_load(183);
+		   }
+		  elseif($node->field_add_profile_cost_per_week[LANGUAGE_NONE][0]['value'] == "Both home Page and & Dashboard N 580,000/wk"){
+			      $product = commerce_product_load(184);
+		                  
+		   }
+		  else{
+				  $product = commerce_product_load(185);
+		                       
+			  }
+		    
+		}
+		  
+	if(commerce_cart_order_load($uid)){
+			$current_order = commerce_cart_order_load($uid);
+			commerce_cart_order_empty($current_order);
+			$line_item = commerce_product_line_item_new($product);
+			commerce_cart_product_add($uid,$line_item);
+			$order_id = $current_order->order_id;
+			$node->field_add_profile_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+			field_attach_update('node', $node);
+			$_SESSION['advert'] = 'advertisement';
+			
+			
+	  }else{
+		  $order = commerce_order_new($uid, 'checkout_checkout');
+		  $line_item = commerce_product_line_item_new($product);
+		  commerce_cart_product_add($uid,$line_item);
+		  $order_id = $current_order->order_id;
+		  $node->field_add_profile_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+		  field_attach_update('node', $node);
+		  $_SESSION['advert'] = 'advertisement';
+		  
+		}
+	
+	
+}
+	// --------------------------------------------product add to checkout for sponsored post-------------------------------------------------
+	
+	if($node->type =='sponsored_post' && $node->is_new){
+		
+		
+		
+		if(commerce_cart_order_load($uid)){
+			$current_order = commerce_cart_order_load($uid);
+			commerce_cart_order_empty($current_order);
+			$product = commerce_product_load(186);
+			$line_item = commerce_product_line_item_new($product);
+			commerce_cart_product_add($uid,$line_item);
+			$order_id = $current_order->order_id;
+			$node->field_sponsor_post_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+			field_attach_update('node', $node);
+			$_SESSION['sponsored'] = 'Sponsored Post';
+			
+			
+	  }else{
+		  $order = commerce_order_new($uid, 'checkout_checkout');
+		  $product = commerce_product_load(186);
+		  $line_item = commerce_product_line_item_new($product);
+		  commerce_cart_product_add($uid,$line_item);
+		  $order_id = $current_order->order_id;
+		  $node->field_sponsor_post_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+		  field_attach_update('node', $node);
+		  $_SESSION['sponsored'] = 'Sponsored Post';
+		  
+		
+	}
+		
+		}
+	
+	
+	// --------------------------------------------product add to checkout for upload banner advertisement------------------------------------------------- 
+	
+	if($node->type =='upload_ad_banner' && $node->is_new){
+		
+		//drupal_set_message(t('An error occurred and processing did not complete.'), 'status');
+		
+		//cost per impression
+      if($node->field_add_banner_billing_option[LANGUAGE_NONE][0]['value'] == "Cost Per Impression"){
+	     if($node->field_add_banner_cost_per_imp[LANGUAGE_NONE][0]['value'] == "100,000 Per Impression N 8"){
+		         $product = commerce_product_load(175);
+		  }
+	      elseif($node->field_add_banner_cost_per_imp[LANGUAGE_NONE][0]['value'] == "200,000 Per Impression N 7"){
+			     $product = commerce_product_load(176);
+		  }
+	      else{
+			     $product = commerce_product_load(177);
+		  }
+			  
+	  }
+	  //cost per day
+  
+   elseif($node->field_add_banner_billing_option[LANGUAGE_NONE][0]['value'] == "Cost Per Day" ){
+		  if($node->field_add_banner_cost_per_day[LANGUAGE_NONE][0]['value'] == "30 days N 16,100"){
+		         $product = commerce_product_load(180);
+		   }
+	      elseif($node->field_add_banner_cost_per_day[LANGUAGE_NONE][0]['value'] == "60 days N 17,500"){
+				 $product = commerce_product_load(179);
+		   }
+		  else{
+				 $product = commerce_product_load(178);
+		   }
+		  
+	  }
+	  //cost per week
+	  
+	else{
+		  if($node->field_add_banner_cost_per_week[LANGUAGE_NONE][0]['value'] == "Home Page N 350,000/wk"){
+			      $product = commerce_product_load(181);
+		   }
+		  elseif($node->field_add_banner_cost_per_week[LANGUAGE_NONE][0]['value'] == "Dashboard N 285,000/wk"){
+			      $product = commerce_product_load(182);
+		   }
+		  elseif($node->field_add_banner_cost_per_week[LANGUAGE_NONE][0]['value'] == "Blog Page N 270,000/wk"){
+			      $product = commerce_product_load(183);
+		   }
+		  elseif($node->field_add_banner_cost_per_week[LANGUAGE_NONE][0]['value'] == "Both home Page and & Dashboard N 580,000/wk"){
+			      $product = commerce_product_load(184);
+		                  
+		   }
+		  else{
+				  $product = commerce_product_load(185);
+		                       
+			  }
+		    
+		}
+		if(commerce_cart_order_load($uid)){
+			$current_order = commerce_cart_order_load($uid);
+			commerce_cart_order_empty($current_order);
+			$line_item = commerce_product_line_item_new($product);
+			commerce_cart_product_add($uid,$line_item);
+			$order_id = $current_order->order_id;
+			$node->field_add_banner_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+			field_attach_update('node', $node);
+			$_SESSION['banner_img'] = 'banner';
+			
+			
+	  }else{
+		  $order = commerce_order_new($uid, 'checkout_checkout');
+		  $line_item = commerce_product_line_item_new($product);
+		  commerce_cart_product_add($uid,$line_item);
+		  $order_id = $current_order->order_id;
+		  $node->field_add_banner_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+		  field_attach_update('node', $node);
+		  $_SESSION['banner_img'] = 'banner';
+		  
+		
+	}
+		  
+	
+	}
+}
+
+function approve_advertisement(){
+  $nid = arg(1);
+  $node = node_load($nid);
+  $node->field_add_profile_payment_status[LANGUAGE_NONE][0]['value'] = 1 ;
+  node_save($node);
+  drupal_goto('manage-advertisement-admin');
+}
+
+function approve_banner_image(){
+  $nid = arg(1);
+  $node = node_load($nid);
+  $node->field_add_banner_payment_status[LANGUAGE_NONE][0]['value'] = 1 ;
+  node_save($node);
+  drupal_goto('uploaded-ads-listing-status');
+}
+
+function approve_sponsored_post(){
+  $nid = arg(1);
+  $node = node_load($nid);
+  $node->field_sponsor_payment_status[LANGUAGE_NONE][0]['value']= 1;
+  node_save($node);
+  drupal_goto('sponsored-posts-application-list');
+}
+/**
+ * Implements hook_form_id_alter().
+ */
+
+function advertisement_form_commerce_checkout_form_complete_alter( &$form, &$form_state ){
+	global $base_url;
+	if(array_key_exists('advert',$_SESSION)){
+		$form['checkout_completion_message']['message']['#markup'] = "Thanks for making payment and posting your school details. A request has been sent out to Admin. To approve your advertisement , please wait for the approval.<a href='$base_url/manage-advertisement'>Click here</a> to go to your advertisement listing page";
+    unset($_SESSION['advert']);
+    }
+    
+    if(array_key_exists('sponsored',$_SESSION)){
+		$form['checkout_completion_message']['message']['#markup'] = "Thanks for making payment and posting your advertisement.A request has been sent out to Admin. To approve your advertisement , please wait for the approval.<a href='$base_url/sponsored-post-listing'>Click here</a> to go to your sponsored posts listing page";
+    unset($_SESSION['sponsored']);
+    }
+    
+    if(array_key_exists('banner_img',$_SESSION)){
+		$form['checkout_completion_message']['message']['#markup'] = "Thanks for making payment and posting your banner image.A request has been sent out to Admin. To approve your banner image, please wait for the approval.<a href='$base_url/uploaded-ads-listing-status'>Click here</a> to go to your banner listing page";
+    unset($_SESSION['banner_img']);
+    }
+}
+
+function order_status($order_id){
+	$query = db_select('commerce_order','co');
+	$query->condition('co.order_id',$order_id);
+	$query->fields('co',array('status'));
+	$result = $query->execute()->fetchField();
+	return $result;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function advertisement_block_info() {
+  $blocks['sponsored-post-block'] = array(
+    'info' => t('sponsored post block'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+ 
+/**
+ * Implements hook_block_view().
+ */
+/*function advertisement_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'sponsored-post-block':
+      $block['subject'] = t('Sponsored Block');
+      $block['content'] = sponsored_content();
+      break;
+  }
+  return $block;
+}
+
+function sponsored_content(){
+	$output = '<div>Hello world</div>';
+	return $output;
+}
+*/
