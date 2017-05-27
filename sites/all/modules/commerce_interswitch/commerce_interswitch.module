@@ -5,10 +5,12 @@
  */
 
 // Define URLs and API endpoints.
-define('COMMERCE_INTERSWITCH_LIVE_PAY', 'https://webpay.interswitchng.com/paydirect/pay');
-define('COMMERCE_INTERSWITCH_TEST_PAY', 'https://stageserv.interswitchng.com/test_paydirect/pay');
-define('COMMERCE_INTERSWITCH_LIVE_LOOKUP', 'https://webpay.interswitchng.com/paydirect/api/v1/gettransaction.json');
-define('COMMERCE_INTERSWITCH_TEST_LOOKUP', 'https://stageserv.interswitchng.com/test_paydirect/api/v1/gettransaction.json');
+define('COMMERCE_INTERSWITCH_LIVE_PAY', 'https://webpay.interswitchng.com/collections/w/pay');
+define('COMMERCE_INTERSWITCH_TEST_PAY', 'https://sandbox.interswitchng.com/collections/w/pay');
+define('COMMERCE_INTERSWITCH_LIVE_LOOKUP', 'https://webpay.interswitchng.com/collections/api/v1/gettransaction.json');
+define('COMMERCE_INTERSWITCH_TEST_LOOKUP', 'https://sandbox.interswitchng.com/collections/api/v1/gettransaction.json');
+
+
 
 
 /**

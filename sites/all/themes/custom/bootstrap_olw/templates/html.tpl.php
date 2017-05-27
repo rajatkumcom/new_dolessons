@@ -77,6 +77,7 @@
   ga('send', 'pageview');
 
 </script>
+<meta name="google-site-verification" content="1ffkwVv5hVcup3MCXBF67hG8MLqMKH38IpVe6yLF1aQ" />
 </head>
 <body<?php print $body_attributes; ?>>
   <div id="skip-link">
