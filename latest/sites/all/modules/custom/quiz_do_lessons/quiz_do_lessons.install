@@ -1,0 +1,84 @@
+<?php
+
+/**
+ *Implements hook_schema() 
+ */
+function quiz_do_lesson_schema() {
+	
+	$schema['assign_teacher'] = array(
+			'description' => 'Assign Teacher',
+			'fields' => array(
+					'id' => array(
+							'description' => 'Serial No.',
+							'type' => 'serial',
+							'not null' => TRUE,
+					),
+					'uid_teacher' => array(
+							'description' => 'Teacher Uid',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'uid_student' => array(
+							'description' => 'Student Uid',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'product_id' => array(
+							'description' => 'Product Id',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'assign_date' => array(
+							'description' => 'Assign Date',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'order_id' => array(
+							'description' => 'Order Id',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+			),
+			'primary key' => array('id'),
+	);
+	
+	$schema['take_a_test'] = array(
+			'description' => 'Remaining Tests',
+			'fields' => array(
+					'id' => array(
+							'description' => 'Serial No.',
+							'type' => 'serial',
+							'not null' => TRUE,
+					),
+					'uid' => array(
+							'description' => 'Uid',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'remaining_test' => array(
+							'description' => 'Remaining Test',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'test_type' => array(
+							'description' => 'Test Type',
+							'type' => 'varchar',
+							'length' => '100',
+							'not null' => TRUE,
+					),
+					'time_of_test_purchased' => array(
+							'description' => '',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+					'validity' => array(
+							'description' => '',
+							'type' => 'int',
+							'not null' => TRUE,
+					),
+			),
+			'primary key' => array('id'),
+	);
+	
+	return $schema;
+}

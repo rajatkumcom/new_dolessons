@@ -1,0 +1,5 @@
+name = Gift Card
+description = generate coupons
+package = custom
+core = 7.x
+version= 7.x

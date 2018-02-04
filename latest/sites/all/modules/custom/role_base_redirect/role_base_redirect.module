@@ -1,0 +1,23 @@
+<?php
+
+function role_base_redirect_init() {
+  drupal_add_js(drupal_get_path("module","role_base_redirect").'/role_base_redirect.js');
+}
+/**
+ * Implements hook_menu().
+ */
+function role_base_redirect_menu() {
+
+ $items['add_feedback'] = array(
+  'title' => 'Add Feedback',
+  'page callback' => 'custom_module_page_callback',
+  'access callback' => TRUE,
+   'type' => MENU_CALLBACK,
+ );
+
+  return $items;
+}
+
+function custom_module_page_callback(){
+	
+}

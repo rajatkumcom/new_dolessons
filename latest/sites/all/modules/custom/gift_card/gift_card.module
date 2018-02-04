@@ -1,0 +1,182 @@
+<?php
+
+
+
+function gift_card_form_alter($form, &$form_state, $form_id){
+		   
+   if($form_id == 'gift_cards_node_form'){
+	   // Load the object of your commerce product
+       
+	   
+	   drupal_set_title(t('Gift Card'));
+       $form['actions']['submit']['#value'] = 'NEXT';
+       $form_state['redirect'] =  "my_submit";
+       //echo'<pre>';
+       //print_r(current_order());
+   }
+}
+
+function current_order(){
+	
+	global $user;
+	$uid = $user->uid;
+	$order = commerce_cart_order_load($uid);
+	return $order;
+	
+}
+
+
+/*$a = commerce_coupon_load(126);
+echo'<pre>';
+print_r($a);*/
+
+/**
+*
+* Implements hook_node_insert()
+*
+* Act on a node being inserted.
+*
+*
+* @param $node
+* The node that is being inserted.
+*
+* @ingroup node_api_hooks
+*/
+function gift_card_node_insert($node) {
+	global $user;
+	$uid = $user->uid;
+	$order_id = commerce_cart_order_load($uid);
+	//$product = commerce_product_load(123);
+   //$line_item = commerce_product_line_item_new($product);
+	
+ 
+ if($node->type =='gift_cards' && $node->is_new) {
+  
+  //drupal_set_message(t("Requested books is accepted"), 'status');
+  
+  /* creating switch for calculating amount */
+  
+  
+  $price_value = $node->field_gift_prices[LANGUAGE_NONE][0]['value'];
+
+switch ($price_value) {
+    case 300:
+    $coupon_amt_id = 2;
+    $product = commerce_product_load(124);
+    $coupon_amt = 30000;
+    break;
+        
+    case 500:
+    $coupon_amt_id = 4;
+    $product = commerce_product_load(125);
+    $coupon_amt = 50000;
+    break;
+    
+    case 1000:
+    $coupon_amt_id = 3;
+    $product = commerce_product_load(126);
+    $coupon_amt = 100000;
+    break;
+    
+    default:
+    $coupon_amt_id = 1;
+    $product = commerce_product_load(123);
+    $coupon_amt = 10000;
+}
+$coupun_quantity = $node->field_gift_quantity[LANGUAGE_NONE][0]['value'];
+$line_item = commerce_product_line_item_new($product);
+$ref_node_id = $node->nid;
+    
+for($i=1; $i<=$coupun_quantity; $i++){
+generate_coupon($coupon_amt_id,$ref_node_id,$coupon_amt);
+
+
+}
+if(commerce_cart_order_load($uid)){
+  $current_order = commerce_cart_order_load($uid);
+  commerce_cart_order_empty($current_order);
+  for($i=1; $i<=$coupun_quantity; $i++){
+    commerce_cart_product_add($uid,$line_item);
+	$order_id = $current_order->order_id;
+	$node->field_gift_card_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+	field_attach_update('node', $node);
+   }
+   }else
+   {
+    $current_order = commerce_order_new($uid, 'checkout_checkout');
+    commerce_cart_product_add($uid,$line_item);
+	$order_id = $current_order->order_id;
+	$node->field_gift_card_order_id[LANGUAGE_NONE][0]['value'] = $order_id;
+	field_attach_update('node', $node);
+	
+    }
+
+
+drupal_goto('checkout');
+
+ 
+  }
+}
+
+
+ 
+  /*generates coupon when adding gift card*/
+ 
+function generate_coupon($coupon_amt_id,$ref_node_id,$coupon_amt){
+	
+	$coupon = commerce_coupon_create('giftcard_coupon');
+	$coupon->code = commerce_coupon_generate_coupon_code('giftcard_coupon', 8);
+	$coupon->commerce_coupon_recipient[LANGUAGE_NONE][0]['target_id'] = 2;
+	$coupon->field_coupon_reference[LANGUAGE_NONE][0]['target_id'] = $coupon_amt_id;
+	$coupon->field_gift_card_node_reference[LANGUAGE_NONE][0]['value'] = $ref_node_id;
+	$coupon->commerce_gc_value[LANGUAGE_NONE][0]['amount'] = $coupon_amt;
+	$coupon->commerce_gc_value[LANGUAGE_NONE][0]['currency_code'] ='NGN';
+	$coupon->commerce_coupon_conditions[LANGUAGE_NONE][0] = array(
+	   'condition_name' => 'commerce_coupon_usage_evaluate_usage',
+	   'condition_settings' => array(
+		  'max_usage' => 1
+	   )
+	);
+	commerce_coupon_save($coupon);
+}
+
+
+/*function gift_card_commerce_cart_product_add($order, $product, $quantity, $line_item) {
+  if ($product->type == 'giftcard') {
+    $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+
+    // Loop through the line items
+    foreach ($order_wrapper->commerce_line_items as $delta => $line_item_wrapper) {
+      // If this is the product we're keeping, make sure the quantity is always 1.
+      if ($line_item_wrapper->commerce_product->product_id->value() == $product->product_id) {
+        $line_item_wrapper->quantity->set(1);
+        $line_item_wrapper->save();
+      }
+      else {
+        // Remove any other product from the order
+        commerce_cart_order_product_line_item_delete($order, $line_item_wrapper->line_item_id->value());
+      }
+    }
+  }
+}*/
+
+
+
+/**
+ * Custom callback to add a product to the user's cart.
+ */
+function gift_card_add_to_cart($line_item_type, $product, $quantity) {
+  global $user;
+  $uid = $user->uid;
+  // Get the order to add line items to.
+  $order = commerce_cart_order_load($uid);
+  if (!$order) {
+    $order = commerce_cart_order_new($uid);
+  }
+  // Add the product to the line item and create it.
+  $line_item = commerce_product_line_item_new($product, $quantity, $order->order_id, array(), $line_item_type);
+  // Add the line item to the cart.
+  if(commerce_cart_product_add($uid, $line_item)) {
+    drupal_goto('checkout');
+  }
+}

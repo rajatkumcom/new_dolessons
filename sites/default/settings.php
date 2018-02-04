@@ -7,7 +7,7 @@ ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 
 error_reporting(E_ALL);
-/**
+/***
  * @file
  * Drupal site-specific configuration file.
  *
@@ -224,9 +224,9 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'dolessons',
-      'username' => 'root',
-      'password' => 'qazwsx@123',
+      'database' => 'k5t3b8s2_sparx2',
+      'username' => 'k5t3b8s2_sparx2',
+      'password' => 'sparx@123',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',

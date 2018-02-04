@@ -1,0 +1,45 @@
+<?php
+
+function book_by_admin_node_presave($node) {
+	
+	if ( $node->type == 'student_availability') {
+		global $user;
+		$student_uid = $user->uid;
+		
+		$tid = isset( $node->field_student_classes_and_subj['und'][0]['tid'] ) ? $node->field_student_classes_and_subj['und'][0]['tid'] : FALSE;
+		
+		if( FALSE == $tid ) {
+			drupal_set_message( 'Please select classes and subjects.', 'warning' );
+			drupal_goto( current_path() );
+		}
+		
+		$results = db_select('field_data_field_product_class_and_subj', 'pcs')
+					->fields('pcs')
+					->condition('entity_type', 'commerce_product', '=' )
+					->condition('bundle', 'product', '=' )
+					->condition('deleted', 0, '=' )
+					->condition('field_product_class_and_subj_tid', $tid, '=' )
+					->execute()
+					->fetchAssoc();
+
+		if( $results ) {
+			$product_id = $results['entity_id'];
+			$_SESSION['find-teacher']['product_id'] = $product_id;
+		
+			$testorder_id =  db_query( "SELECT cli.order_id
+				FROM commerce_payment_transaction cpt
+				JOIN commerce_line_item cli ON cpt.order_id = cli.order_id
+				JOIN field_data_commerce_product fdcp ON cli.line_item_id = fdcp.entity_id
+				WHERE cpt.status = 'success' and cli.type = 'product' and cpt.uid = $student_uid and fdcp.commerce_product_product_id = $product_id ORDER BY cli.order_id DESC" )->fetchAssoc();
+			
+			if( FALSE == $testorder_id ) {
+				drupal_set_message( 'Please purchase lesson first.', 'warning' );
+				drupal_goto(  current_path() );
+			}
+		} else {
+			drupal_set_message( 'Please purchase lesson first.', 'warning' );
+			drupal_goto(  current_path() );
+		}
+	}
+
+}

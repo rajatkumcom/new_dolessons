@@ -1,0 +1,4 @@
+name = dashboard
+description = custom dashboard for teacher and students
+package = custom
+core = 7.x

@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function twilio_otp_schema() {
+  $schema['twilio_otp'] = array(
+    'description' => 'Store mobile number and country code.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Serial Id',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'User Id',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'mobile_number' => array(
+        'description' => 'Mobile Number',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
+      'country_code' => array(
+        'description' => 'Country Code',
+        'type' => 'varchar',
+        'length' => '45',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
