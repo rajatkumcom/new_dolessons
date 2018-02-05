@@ -1,8 +1,0 @@
-name = Assign Teacher
-description = Assign Teacher
-core = 7.x
-package = Custom 
-
-dependencies[] = views
-
-

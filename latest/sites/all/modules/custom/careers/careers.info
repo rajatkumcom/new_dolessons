@@ -1,7 +1,0 @@
-name = careers 
-description = career form
-package = custom
-core = 7.x
-version= 7.x
-
-; Information added by Deepesh Arora script on 03-10-2016

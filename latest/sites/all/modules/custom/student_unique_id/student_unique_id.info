@@ -1,7 +1,0 @@
-name = student_unique_id
-description =  generate and store unique student id on registration
-package = custom
-core = 7.x
-version=7.x
-
-; Information added by Deepesh Arora script on 27-05-2016

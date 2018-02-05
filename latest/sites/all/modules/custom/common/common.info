@@ -1,4 +1,0 @@
-name = common
-description = common custom tasks
-package = custom
-core = 7.x
