@@ -3528,3 +3528,7 @@ textarea.form-control{ min-height:100px; }
 .link-below ul li.last{background: url('../images/icons-sprite.png') no-repeat;background-position: 0 -407px;}
 /*.manage-dashboard-profile ul li.last:hover{background: url('../images/icons-sprite.png') no-repeat;background-position: -23px -407px;}*/
 
+
+#flexslider-1 > ul > li > div.views-field.views-field-field-banner > div > img{
+	width : 100%
+}
