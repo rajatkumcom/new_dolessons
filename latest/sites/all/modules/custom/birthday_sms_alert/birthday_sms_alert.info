@@ -1,6 +1,0 @@
-name = Birthday SMS Alert
-description = Send Bithday sms to all users. 
-core = 7.x
-package = Twilio 
-
-dependencies[] = twilio

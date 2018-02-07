@@ -1,4 +1,0 @@
-name = Find a Teacher
-description = custom find a teacher module for users to find relevant teachers
-package = custom
-core = 7.x

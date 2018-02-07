@@ -1,4 +1,0 @@
-name = Dashboard Notifications
-description = custom dashboard notifications for all users
-package = custom
-core = 7.x
